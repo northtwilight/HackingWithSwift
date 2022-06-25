@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     private struct Constants {
         static let scoreText = "Score: 0"
         
@@ -66,12 +66,16 @@ class ViewController: UIViewController {
     }
     
     func levelUp(action: UIAlertAction) {
-        level += 1
-        solutions.removeAll(keepingCapacity: true)
-        loadLevel()
-        for button in letterButtons {
-            button.isHidden = false
+        DispatchQueue.main.async {
+            self.level += 1
+            self.solutions.removeAll(keepingCapacity: true)
+            self.loadLevel()
+            for button in self.letterButtons {
+                button.isHidden = false
+            }
+            self.tableView.reloadData()
         }
+        
     }
 
     @objc func letterTapped(_ sender: UIButton) {

@@ -22,16 +22,23 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         title = Constants.title
         navigationController?.navigationBar.prefersLargeTitles = true
+        fetchImages()
+    }
+    
+    func fetchImages() {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
-        for item in items {
-            if item.hasPrefix(Constants.NSSLPrefix) {
-                pictures.append(item)
+        DispatchQueue.main.async {
+            let items = try! fm.contentsOfDirectory(atPath: path)
+            for item in items {
+                if item.hasPrefix(Constants.NSSLPrefix) {
+                    self.pictures.append(item)
+                }
             }
+            self.pictures = self.pictures.sorted { $0 < $1 }
+            print(self.pictures)
+            self.tableView.reloadData()
         }
-        pictures = pictures.sorted { $0 < $1 }
-        print(pictures)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

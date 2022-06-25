@@ -112,19 +112,21 @@ class ViewController: UITableViewController {
                 onMainThread: #selector(UITableView.reloadData),
                 with: nil,
                 waitUntilDone: false)
+        } else {
+            performSelector(
+                onMainThread: #selector(showError),
+                with: nil,
+                waitUntilDone: false)
         }
     }
     
-    func showError() {
-        DispatchQueue.main.async {
-            let ac = UIAlertController(
-                title: Constants.loadingError,
-                message: Constants.message,
-                preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(ac, animated: true)
-        }
-        
+    @objc func showError() {
+        let ac = UIAlertController(
+            title: Constants.loadingError,
+            message: Constants.message,
+            preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(ac, animated: true)
     }
     
     // MARK: - ObjC functions

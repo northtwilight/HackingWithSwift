@@ -114,9 +114,12 @@ class ViewController: UITableViewController {
     // MARK: - ObjC functions
     
     @objc func resetFilter() {
-        filteredPetitions.removeAll()
-        tableView.reloadData()
-        self.navigationItem.leftBarButtonItems?.last?.isEnabled = false
+        DispatchQueue.main.async {
+            self.filteredPetitions.removeAll()
+            self.tableView.reloadData()
+            self.navigationItem.leftBarButtonItems?.last?.isEnabled = false
+        }
+        
     }
     
     @objc func showCredits() {
