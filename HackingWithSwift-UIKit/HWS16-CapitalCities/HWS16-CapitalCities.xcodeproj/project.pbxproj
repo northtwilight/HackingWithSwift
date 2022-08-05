@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77017DB4289DD61700E1DB42 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77017DB3289DD61700E1DB42 /* ViewModel.swift */; };
 		7798727A289CCF61004ADC46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77987279289CCF61004ADC46 /* AppDelegate.swift */; };
 		7798727C289CCF61004ADC46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7798727B289CCF61004ADC46 /* SceneDelegate.swift */; };
 		7798727E289CCF61004ADC46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7798727D289CCF61004ADC46 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77017DB3289DD61700E1DB42 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		77987276289CCF61004ADC46 /* HWS16-CapitalCities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HWS16-CapitalCities.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77987279289CCF61004ADC46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7798727B289CCF61004ADC46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				77987279289CCF61004ADC46 /* AppDelegate.swift */,
 				7798727B289CCF61004ADC46 /* SceneDelegate.swift */,
 				7798727D289CCF61004ADC46 /* ViewController.swift */,
+				77017DB3289DD61700E1DB42 /* ViewModel.swift */,
 				7798727F289CCF61004ADC46 /* Main.storyboard */,
 				7798728D289CDED3004ADC46 /* Capital.swift */,
 				77987282289CCF62004ADC46 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77017DB4289DD61700E1DB42 /* ViewModel.swift in Sources */,
 				7798727E289CCF61004ADC46 /* ViewController.swift in Sources */,
 				7798727A289CCF61004ADC46 /* AppDelegate.swift in Sources */,
 				7798728E289CDED3004ADC46 /* Capital.swift in Sources */,
