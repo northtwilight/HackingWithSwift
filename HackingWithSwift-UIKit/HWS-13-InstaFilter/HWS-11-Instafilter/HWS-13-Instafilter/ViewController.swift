@@ -25,11 +25,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var currentFilter: CIFilter!
     
     enum CIFilterAction: String, CaseIterable {
+        case circleDistortion = "CICircleSplashDistortion"
         case distortion = "CIBumpDistortion"
-        case gaussian = "CIGaussianBlur"
+        case droste = "CIDroste"
+        case boxBlur = "CIBoxBlur"
+        case gaussianBlur = "CIGaussianBlur"
+        case motionBlur = "CIMotionBlur"
+        case noiseReduction = "CINoiseReduction"
         case pixellate = "CIPixellate"
         case sepia = "CISepiaTone"
         case twirl = "CITwirlDistortion"
+        case vortexDistortion = "CIVortexDistortion"
         case unsharp = "CIUnsharpMask"
         case vignette = "CIVignette"
     }

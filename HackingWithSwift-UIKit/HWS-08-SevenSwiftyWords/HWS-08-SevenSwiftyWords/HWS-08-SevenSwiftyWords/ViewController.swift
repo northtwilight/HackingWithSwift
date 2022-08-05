@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController {
     private struct Constants {
         static let scoreText = "Score: 0"
         
@@ -38,31 +38,45 @@ class ViewController: UITableViewController {
         static let wellDone = "Well done!"
         static let nextLevel = "Are you ready for the next level?"
         static let letsGo = "Let's go!"
+        static func configureScoreLabel(score: String) -> String {
+            "Score: \(score)"
+        }
     }
     
-    var cluesLabel = UILabel()
-    var answersLabel = UILabel()
-    var scoreLabel = UILabel()
+    @IBOutlet weak var cluesLabel: UILabel!
+    @IBOutlet weak var answersLabel: UILabel!
+    @IBOutlet weak var currentAnswer: UITextField!
+    @IBOutlet weak var scoreLabel: UILabel!
     
-    var currentAnswer = UITextField()
     var letterButtons = [UIButton]()
+    var activatedButtons = [UIButton]()
+    var solutions = [String]()
+    
+    lazy var score = 0 {
+        didSet {
+            scoreLabel.text = Constants.configureScoreLabel(score: String(score) )
+        }
+    }
+    var level = 1
+    
     let buttonsView = UIView()
     
     let submit = UIButton(type: .system)
     let clear = UIButton(type: .system)
-    
-    var activatedButtons = [UIButton]()
-    var solutions = [String]()
-    
-    var score = 0 {
-        didSet {
-            scoreLabel.text = "Score: \(score)"
-        }
-    }
-    var level = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatAndConfigure()
+    }
+    
+    func formatAndConfigure() {
+        createSubmitAndClear()
+        formatIndividualButtons()
+        createButtonsView()
+        formatLabels()
+        configureTextfield()
+        formatConstraints()
+        loadLevel()
     }
     
     func levelUp(action: UIAlertAction) {
@@ -71,18 +85,27 @@ class ViewController: UITableViewController {
             self.solutions.removeAll(keepingCapacity: true)
             self.loadLevel()
             for button in self.letterButtons {
-                button.isHidden = false
+                button.alpha = 0
+                let oneSecond = CGFloat(1)
+                let noDelay = CGFloat(0)
+                UIView.animate(
+                    withDuration: oneSecond,
+                    delay: noDelay,
+                    usingSpringWithDamping: 0.5,
+                    initialSpringVelocity: 5,
+                    options: [],
+                    animations: { button.alpha = 1 },
+                    completion: { finished in
+                        print("Finished button alpha animation.")
+                    })
             }
-            self.tableView.reloadData()
         }
-        
     }
 
     @objc func letterTapped(_ sender: UIButton) {
         guard let buttonTitle = sender.titleLabel?.text else { return }
         currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
         activatedButtons.append(sender)
-        sender.isHidden = true
     }
     
     @objc func submitTapped(_ sender: UIButton) {
@@ -117,14 +140,6 @@ class ViewController: UITableViewController {
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
-        
-        createSubmitAndClear()
-        formatIndividualButtons()
-        createButtonsView()
-        formatLabels()
-        formatTextfield()
-        formatConstraints()
-        loadLevel()
     }
     
     func createSubmitAndClear() {
@@ -144,7 +159,7 @@ class ViewController: UITableViewController {
         view.addSubview(buttonsView)
     }
     
-    func formatIndividualLabels(
+    func configureIndividualLabels(
         label: UILabel,
         textAlignment: NSTextAlignment = .right,
         fontSize: CGFloat,
@@ -158,7 +173,8 @@ class ViewController: UITableViewController {
         view.addSubview(label)
     }
     
-    func formatTextfield() {
+    func configureTextfield() {
+        currentAnswer.delegate = self
         currentAnswer.translatesAutoresizingMaskIntoConstraints = false
         currentAnswer.placeholder = Constants.currentAnswerPlaceholder
         currentAnswer.textAlignment = .center
@@ -246,17 +262,18 @@ class ViewController: UITableViewController {
     }
     
     func formatLabels() {
-        formatIndividualLabels(
+        let scoreLabel = UILabel()
+        configureIndividualLabels(
             label: scoreLabel,
             fontSize: Constants.twentyFour,
             text: Constants.scoreText)
-        
-        formatIndividualLabels(
+        let cluesLabel = UILabel()
+        configureIndividualLabels(
             label: cluesLabel,
             fontSize: Constants.twentyFour,
             text: Constants.clues)
-        
-        formatIndividualLabels(
+        let answersLabel = UILabel()
+        configureIndividualLabels(
             label: answersLabel,
             fontSize: Constants.twentyFour,
             text: Constants.answers)
@@ -273,6 +290,7 @@ class ViewController: UITableViewController {
         let width = Constants.buttonWidth
         let height = Constants.buttonHeight
         
+        // create 20 buttons as a 4x5 grid
         for row in 0..<4 {
             for column in 0..<5 {
                 let letterButton = UIButton(type: .system)
@@ -331,3 +349,6 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    
+}
