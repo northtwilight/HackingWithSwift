@@ -22,7 +22,7 @@ class ViewModel: ViewModelType {
         
         static let londonTitle = "London"
         static let osloTitle = "Oslo"
-        static let parisTitle = "Paris"
+        static let parisTitle = "PariZZs"
         static let romeTitle = "Rome"
         static let washingtonTitle = "Washington"
         
