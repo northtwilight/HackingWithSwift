@@ -13,7 +13,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         static let capitalIdentifier = "Capital"
     }
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,46 +22,58 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func setupViewModel() {
         let viewModel = ViewModel()
-        for capital in viewModel.cities {
+        let capitals = viewModel.cities
+        
+        for capital in capitals {
             mapView.addAnnotation(capital)
             print("  Title: \(capital.title!)")
             print("  Coordinate: \(capital.coordinate)")
             print("  Info: \(capital.info)\n")
         }
+        
+        let vancouver = Capital(
+            title: "Vancouver",
+            coordinate: CLLocationCoordinate2D(
+                latitude:  49.246292,
+                longitude: -123.116226),
+            info: "Royally effed in every way")
+        
+        mapView.addAnnotation(vancouver)
+        
         print("cities' count: \(self.mapView.annotations.count)")
         
-        for annotation in self.mapView.annotations {
+        let mapViewAnnotations = self.mapView.annotations
+        
+        for annotation in mapViewAnnotations {
             print("Annotation: \(annotation)")
-            print("annotation.title: \(annotation.title!)")
+            print("annotation.title: \(annotation.title!!)")
             print("annotation.coord: \(annotation.coordinate)")
             print("annotation.debugDescription: \(annotation.debugDescription!)\n")
         }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // 1
         guard annotation is Capital else {
             print("Can't set annotation to view, exiting early")
             return nil
         }
         
-        // 2
         let identifier = Constants.capitalIdentifier
         
-        // 3
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         if annotationView == nil {
-            // 4
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
+            print("\(#function):  building annotation view anew")
             
-            // 5
             let btn = UIButton(type: .detailDisclosure)
             annotationView?.rightCalloutAccessoryView = btn
         } else {
-            // 6
+            
+            print("existing annotation \(annotation) being loaded")
             annotationView?.annotation = annotation
+            print("loading annotation: \(annotation)")
         }
         return annotationView
     }

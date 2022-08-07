@@ -14,6 +14,38 @@ protocol ViewModelType {
 }
 class ViewModel: ViewModelType {
     private struct Constants {
+        struct Capitals {
+            struct London {
+                static let title = "Londahn"
+                static let latitude = 51.507222
+                static let longitude = -0.1275
+                static let info = "Home to the 2012 Summer Olympics."
+            }
+            struct Oslo {
+                static let title = "Osl0"
+                static let latitude = 59.95
+                static let longitude = 10.75
+                static let info = "Founded over a thousand years ago."
+            }
+            struct Paris {
+                static let title = "PariZZs"
+                static let latitude = 48.8567
+                static let longitude = 2.3508
+                static let info = "Often called the City of Light."
+            }
+            struct Rome {
+                static let title = "RomA"
+                static let latitude = 41.9
+                static let longitude = 12.5
+                static let info = "Has a whole country inside it."
+            }
+            struct Washington {
+                static let title = "WaRshington"
+                static let latitude = 38.895111
+                static let longitude = -77.036667
+                static let info = "Named after George himself."
+            }
+        }
         static let londonInfo = "Home to the 2012 Summer Olympics"
         static let osloInfo = "Founded over a thousand years ago."
         static let parisInfo = "Often called the City of Light"
@@ -40,39 +72,39 @@ class ViewModel: ViewModelType {
     }
     
     let london = Capital(
-        title: Constants.londonTitle,
+        title: Constants.Capitals.London.title,
         coordinate: CLLocationCoordinate2D(
-            latitude: Constants.londonLatitude,
-            longitude: Constants.londonLongitude),
-        info: Constants.londonInfo)
+            latitude: Constants.Capitals.London.latitude,
+            longitude: Constants.Capitals.London.longitude),
+        info: Constants.Capitals.London.info)
     
     let oslo = Capital(
-        title: Constants.osloTitle,
+        title: Constants.Capitals.Oslo.title,
         coordinate: CLLocationCoordinate2D(
-            latitude: Constants.osloLatitude,
-            longitude: Constants.osloLongitude),
+            latitude: Constants.Capitals.Oslo.latitude,
+            longitude: Constants.Capitals.Oslo.longitude),
         info: Constants.osloInfo)
     
     let paris = Capital(
-        title: Constants.parisTitle,
+        title: Constants.Capitals.Paris.title,
         coordinate: CLLocationCoordinate2D(
-            latitude: Constants.parisLatitude,
-            longitude: Constants.parisLongitude),
-        info: Constants.parisInfo)
+            latitude: Constants.Capitals.Paris.latitude,
+            longitude: Constants.Capitals.Paris.longitude),
+        info: Constants.Capitals.Paris.info)
     
     let rome = Capital(
-        title: Constants.romeTitle,
+        title: Constants.Capitals.Rome.title,
         coordinate: CLLocationCoordinate2D(
-            latitude: Constants.romeLatitude,
-            longitude: Constants.romeLongitude),
+            latitude: Constants.Capitals.Rome.latitude,
+            longitude: Constants.Capitals.Rome.longitude),
         info: Constants.romeInfo)
     
     let washington = Capital(
-        title: Constants.washingtonTitle,
+        title: Constants.Capitals.Washington.title,
         coordinate: CLLocationCoordinate2D(
-            latitude: Constants.washingtonLatitude,
-            longitude: Constants.washingtonLongitude),
-        info: Constants.washingtonInfo)
+            latitude: Constants.Capitals.Washington.latitude,
+            longitude: Constants.Capitals.Washington.longitude),
+        info: Constants.Capitals.Washington.info)
     
-    lazy var cities: [Capital] = [london, oslo, paris, rome, washington]
+    public lazy var cities: [Capital] = [london, oslo, paris, rome, washington]
 }
