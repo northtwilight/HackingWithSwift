@@ -16,6 +16,8 @@ struct ContentView: View {
         static let tipPercent = "Tip percentage"
         static let howMuchTip = "How much tip do you want to leave?"
         static let done = "Done"
+        static let amtPerPerson = "Amount per person"
+        static let grandTotalText = "Grand total, including tip"
         
         static func textNumberOfPeople(number: Int) -> String {
             "\(number) people"
@@ -29,7 +31,8 @@ struct ContentView: View {
     let tipPercentages = [10, 15, 20, 25, 0]
     
     var totalPerPerson: Double {
-        calculateTotalPerPerson()
+        // calculateTotalPerPerson()
+        calculateTotalOrTotalPerPerson(showTotal: false)
     }
     
     @FocusState private var amountIsFocused: Bool
@@ -37,7 +40,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
+                // section 1
                 Section {
+                    
                     TextField(
                         Constants.amount,
                         value: $checkAmount,
@@ -53,6 +58,7 @@ struct ContentView: View {
                     }
                 }
                 
+                // section 2
                 Section {
                     Picker(Constants.tipPercent, selection: $tipPercentage) {
                         ForEach(tipPercentages, id: \.self) {
@@ -64,8 +70,18 @@ struct ContentView: View {
                     Text(Constants.howMuchTip)
                 }
                 
+                // section 1
                 Section {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? Constants.usd))
+                } header: {
+                    Text(Constants.amtPerPerson)
+                }
+                
+                // section 4
+                Section {
+                    Text("\(calculateTotalOrTotalPerPerson(showTotal: true), format: .currency(code: Locale.current.currencyCode ?? Constants.usd))")
+                } header: {
+                    Text(Constants.grandTotalText)
                 }
             }
             .navigationTitle(Constants.navTitle)
@@ -80,7 +96,7 @@ struct ContentView: View {
         }
     }
     
-    func calculateTotalPerPerson() -> Double {
+    func calculateTotalOrTotalPerPerson(showTotal: Bool) -> Double {
         let peopleCount = Double(numberOfPeople + 2)
         let tipSelection = Double(tipPercentage)
         
@@ -88,7 +104,7 @@ struct ContentView: View {
         let grandTotal = checkAmount + tipValue
         let amountPerPerson = grandTotal / peopleCount
         
-        return amountPerPerson
+        return showTotal ? grandTotal : amountPerPerson
     }
 }
 
