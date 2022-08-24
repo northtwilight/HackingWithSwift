@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		777961EC28B6E64E005F8B44 /* HWSSU_02_GuessTheFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777961EB28B6E64E005F8B44 /* HWSSU_02_GuessTheFlagApp.swift */; };
+		777961EE28B6E64E005F8B44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777961ED28B6E64E005F8B44 /* ContentView.swift */; };
+		777961F028B6E64F005F8B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 777961EF28B6E64F005F8B44 /* Assets.xcassets */; };
+		777961F328B6E64F005F8B44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 777961F228B6E64F005F8B44 /* Preview Assets.xcassets */; };
+		777961FD28B6E64F005F8B44 /* HWSSU_02_GuessTheFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777961FC28B6E64F005F8B44 /* HWSSU_02_GuessTheFlagTests.swift */; };
+		7779620728B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7779620628B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITests.swift */; };
+		7779620928B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7779620828B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITestsLaunchTests.swift */; };
+		7779622D28B6E6DC005F8B44 /* Monaco@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621528B6E6DB005F8B44 /* Monaco@3x.png */; };
+		7779622E28B6E6DC005F8B44 /* Italy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621628B6E6DB005F8B44 /* Italy@2x.png */; };
+		7779622F28B6E6DC005F8B44 /* Germany@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621728B6E6DB005F8B44 /* Germany@2x.png */; };
+		7779623028B6E6DC005F8B44 /* Estonia@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621828B6E6DB005F8B44 /* Estonia@3x.png */; };
+		7779623128B6E6DC005F8B44 /* Poland@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621928B6E6DB005F8B44 /* Poland@2x.png */; };
+		7779623228B6E6DC005F8B44 /* US@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621A28B6E6DB005F8B44 /* US@2x.png */; };
+		7779623328B6E6DC005F8B44 /* Ireland@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621B28B6E6DB005F8B44 /* Ireland@3x.png */; };
+		7779623428B6E6DC005F8B44 /* UK@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621C28B6E6DB005F8B44 /* UK@3x.png */; };
+		7779623528B6E6DC005F8B44 /* Ireland@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621D28B6E6DB005F8B44 /* Ireland@2x.png */; };
+		7779623628B6E6DC005F8B44 /* Russia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621E28B6E6DB005F8B44 /* Russia@2x.png */; };
+		7779623728B6E6DC005F8B44 /* Nigeria@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779621F28B6E6DB005F8B44 /* Nigeria@3x.png */; };
+		7779623828B6E6DC005F8B44 /* Poland@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622028B6E6DB005F8B44 /* Poland@3x.png */; };
+		7779623928B6E6DC005F8B44 /* UK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622128B6E6DB005F8B44 /* UK@2x.png */; };
+		7779623A28B6E6DC005F8B44 /* Spain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622228B6E6DB005F8B44 /* Spain@2x.png */; };
+		7779623B28B6E6DC005F8B44 /* Russia@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622328B6E6DB005F8B44 /* Russia@3x.png */; };
+		7779623C28B6E6DC005F8B44 /* Spain@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622428B6E6DB005F8B44 /* Spain@3x.png */; };
+		7779623D28B6E6DC005F8B44 /* Estonia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622528B6E6DB005F8B44 /* Estonia@2x.png */; };
+		7779623E28B6E6DC005F8B44 /* France@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622628B6E6DB005F8B44 /* France@2x.png */; };
+		7779623F28B6E6DC005F8B44 /* Nigeria@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622728B6E6DB005F8B44 /* Nigeria@2x.png */; };
+		7779624028B6E6DC005F8B44 /* US@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622828B6E6DB005F8B44 /* US@3x.png */; };
+		7779624128B6E6DC005F8B44 /* Italy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622928B6E6DB005F8B44 /* Italy@3x.png */; };
+		7779624228B6E6DC005F8B44 /* France@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622A28B6E6DB005F8B44 /* France@3x.png */; };
+		7779624328B6E6DC005F8B44 /* Germany@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622B28B6E6DB005F8B44 /* Germany@3x.png */; };
+		7779624428B6E6DC005F8B44 /* Monaco@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7779622C28B6E6DC005F8B44 /* Monaco@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		777961F928B6E64F005F8B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 777961E028B6E64E005F8B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 777961E728B6E64E005F8B44;
+			remoteInfo = "HWSSU-02-GuessTheFlag";
+		};
+		7779620328B6E64F005F8B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 777961E028B6E64E005F8B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 777961E728B6E64E005F8B44;
+			remoteInfo = "HWSSU-02-GuessTheFlag";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		777961E828B6E64E005F8B44 /* HWSSU-02-GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HWSSU-02-GuessTheFlag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		777961EB28B6E64E005F8B44 /* HWSSU_02_GuessTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWSSU_02_GuessTheFlagApp.swift; sourceTree = "<group>"; };
+		777961ED28B6E64E005F8B44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		777961EF28B6E64F005F8B44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		777961F228B6E64F005F8B44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		777961F828B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWSSU-02-GuessTheFlagTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		777961FC28B6E64F005F8B44 /* HWSSU_02_GuessTheFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWSSU_02_GuessTheFlagTests.swift; sourceTree = "<group>"; };
+		7779620228B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWSSU-02-GuessTheFlagUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7779620628B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWSSU_02_GuessTheFlagUITests.swift; sourceTree = "<group>"; };
+		7779620828B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWSSU_02_GuessTheFlagUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7779621528B6E6DB005F8B44 /* Monaco@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Monaco@3x.png"; sourceTree = "<group>"; };
+		7779621628B6E6DB005F8B44 /* Italy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Italy@2x.png"; sourceTree = "<group>"; };
+		7779621728B6E6DB005F8B44 /* Germany@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Germany@2x.png"; sourceTree = "<group>"; };
+		7779621828B6E6DB005F8B44 /* Estonia@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Estonia@3x.png"; sourceTree = "<group>"; };
+		7779621928B6E6DB005F8B44 /* Poland@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Poland@2x.png"; sourceTree = "<group>"; };
+		7779621A28B6E6DB005F8B44 /* US@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "US@2x.png"; sourceTree = "<group>"; };
+		7779621B28B6E6DB005F8B44 /* Ireland@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ireland@3x.png"; sourceTree = "<group>"; };
+		7779621C28B6E6DB005F8B44 /* UK@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UK@3x.png"; sourceTree = "<group>"; };
+		7779621D28B6E6DB005F8B44 /* Ireland@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ireland@2x.png"; sourceTree = "<group>"; };
+		7779621E28B6E6DB005F8B44 /* Russia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Russia@2x.png"; sourceTree = "<group>"; };
+		7779621F28B6E6DB005F8B44 /* Nigeria@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nigeria@3x.png"; sourceTree = "<group>"; };
+		7779622028B6E6DB005F8B44 /* Poland@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Poland@3x.png"; sourceTree = "<group>"; };
+		7779622128B6E6DB005F8B44 /* UK@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UK@2x.png"; sourceTree = "<group>"; };
+		7779622228B6E6DB005F8B44 /* Spain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spain@2x.png"; sourceTree = "<group>"; };
+		7779622328B6E6DB005F8B44 /* Russia@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Russia@3x.png"; sourceTree = "<group>"; };
+		7779622428B6E6DB005F8B44 /* Spain@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spain@3x.png"; sourceTree = "<group>"; };
+		7779622528B6E6DB005F8B44 /* Estonia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Estonia@2x.png"; sourceTree = "<group>"; };
+		7779622628B6E6DB005F8B44 /* France@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "France@2x.png"; sourceTree = "<group>"; };
+		7779622728B6E6DB005F8B44 /* Nigeria@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nigeria@2x.png"; sourceTree = "<group>"; };
+		7779622828B6E6DB005F8B44 /* US@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "US@3x.png"; sourceTree = "<group>"; };
+		7779622928B6E6DB005F8B44 /* Italy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Italy@3x.png"; sourceTree = "<group>"; };
+		7779622A28B6E6DB005F8B44 /* France@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "France@3x.png"; sourceTree = "<group>"; };
+		7779622B28B6E6DB005F8B44 /* Germany@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Germany@3x.png"; sourceTree = "<group>"; };
+		7779622C28B6E6DC005F8B44 /* Monaco@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Monaco@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		777961E528B6E64E005F8B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777961F528B6E64F005F8B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777961FF28B6E64F005F8B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		777961DF28B6E64E005F8B44 = {
+			isa = PBXGroup;
+			children = (
+				777961EA28B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */,
+				777961FB28B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests */,
+				7779620528B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests */,
+				777961E928B6E64E005F8B44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		777961E928B6E64E005F8B44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				777961E828B6E64E005F8B44 /* HWSSU-02-GuessTheFlag.app */,
+				777961F828B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests.xctest */,
+				7779620228B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		777961EA28B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */ = {
+			isa = PBXGroup;
+			children = (
+				777961EB28B6E64E005F8B44 /* HWSSU_02_GuessTheFlagApp.swift */,
+				777961ED28B6E64E005F8B44 /* ContentView.swift */,
+				777961EF28B6E64F005F8B44 /* Assets.xcassets */,
+				7779624528B6E815005F8B44 /* PNG-assets */,
+				777961F128B6E64F005F8B44 /* Preview Content */,
+			);
+			path = "HWSSU-02-GuessTheFlag";
+			sourceTree = "<group>";
+		};
+		777961F128B6E64F005F8B44 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				777961F228B6E64F005F8B44 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		777961FB28B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests */ = {
+			isa = PBXGroup;
+			children = (
+				777961FC28B6E64F005F8B44 /* HWSSU_02_GuessTheFlagTests.swift */,
+			);
+			path = "HWSSU-02-GuessTheFlagTests";
+			sourceTree = "<group>";
+		};
+		7779620528B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7779620628B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITests.swift */,
+				7779620828B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITestsLaunchTests.swift */,
+			);
+			path = "HWSSU-02-GuessTheFlagUITests";
+			sourceTree = "<group>";
+		};
+		7779624528B6E815005F8B44 /* PNG-assets */ = {
+			isa = PBXGroup;
+			children = (
+				7779622528B6E6DB005F8B44 /* Estonia@2x.png */,
+				7779621828B6E6DB005F8B44 /* Estonia@3x.png */,
+				7779622628B6E6DB005F8B44 /* France@2x.png */,
+				7779622A28B6E6DB005F8B44 /* France@3x.png */,
+				7779621728B6E6DB005F8B44 /* Germany@2x.png */,
+				7779622B28B6E6DB005F8B44 /* Germany@3x.png */,
+				7779621D28B6E6DB005F8B44 /* Ireland@2x.png */,
+				7779621B28B6E6DB005F8B44 /* Ireland@3x.png */,
+				7779621628B6E6DB005F8B44 /* Italy@2x.png */,
+				7779622928B6E6DB005F8B44 /* Italy@3x.png */,
+				7779622C28B6E6DC005F8B44 /* Monaco@2x.png */,
+				7779621528B6E6DB005F8B44 /* Monaco@3x.png */,
+				7779622728B6E6DB005F8B44 /* Nigeria@2x.png */,
+				7779621F28B6E6DB005F8B44 /* Nigeria@3x.png */,
+				7779621928B6E6DB005F8B44 /* Poland@2x.png */,
+				7779622028B6E6DB005F8B44 /* Poland@3x.png */,
+				7779621E28B6E6DB005F8B44 /* Russia@2x.png */,
+				7779622328B6E6DB005F8B44 /* Russia@3x.png */,
+				7779622228B6E6DB005F8B44 /* Spain@2x.png */,
+				7779622428B6E6DB005F8B44 /* Spain@3x.png */,
+				7779622128B6E6DB005F8B44 /* UK@2x.png */,
+				7779621C28B6E6DB005F8B44 /* UK@3x.png */,
+				7779621A28B6E6DB005F8B44 /* US@2x.png */,
+				7779622828B6E6DB005F8B44 /* US@3x.png */,
+			);
+			path = "PNG-assets";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		777961E728B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7779620C28B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlag" */;
+			buildPhases = (
+				777961E428B6E64E005F8B44 /* Sources */,
+				777961E528B6E64E005F8B44 /* Frameworks */,
+				777961E628B6E64E005F8B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HWSSU-02-GuessTheFlag";
+			productName = "HWSSU-02-GuessTheFlag";
+			productReference = 777961E828B6E64E005F8B44 /* HWSSU-02-GuessTheFlag.app */;
+			productType = "com.apple.product-type.application";
+		};
+		777961F728B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7779620F28B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlagTests" */;
+			buildPhases = (
+				777961F428B6E64F005F8B44 /* Sources */,
+				777961F528B6E64F005F8B44 /* Frameworks */,
+				777961F628B6E64F005F8B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				777961FA28B6E64F005F8B44 /* PBXTargetDependency */,
+			);
+			name = "HWSSU-02-GuessTheFlagTests";
+			productName = "HWSSU-02-GuessTheFlagTests";
+			productReference = 777961F828B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7779620128B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7779621228B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlagUITests" */;
+			buildPhases = (
+				777961FE28B6E64F005F8B44 /* Sources */,
+				777961FF28B6E64F005F8B44 /* Frameworks */,
+				7779620028B6E64F005F8B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7779620428B6E64F005F8B44 /* PBXTargetDependency */,
+			);
+			name = "HWSSU-02-GuessTheFlagUITests";
+			productName = "HWSSU-02-GuessTheFlagUITests";
+			productReference = 7779620228B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		777961E028B6E64E005F8B44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					777961E728B6E64E005F8B44 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					777961F728B6E64F005F8B44 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 777961E728B6E64E005F8B44;
+					};
+					7779620128B6E64F005F8B44 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 777961E728B6E64E005F8B44;
+					};
+				};
+			};
+			buildConfigurationList = 777961E328B6E64E005F8B44 /* Build configuration list for PBXProject "HWSSU-02-GuessTheFlag" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 777961DF28B6E64E005F8B44;
+			productRefGroup = 777961E928B6E64E005F8B44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				777961E728B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */,
+				777961F728B6E64F005F8B44 /* HWSSU-02-GuessTheFlagTests */,
+				7779620128B6E64F005F8B44 /* HWSSU-02-GuessTheFlagUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		777961E628B6E64E005F8B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7779623328B6E6DC005F8B44 /* Ireland@3x.png in Resources */,
+				7779623428B6E6DC005F8B44 /* UK@3x.png in Resources */,
+				7779623128B6E6DC005F8B44 /* Poland@2x.png in Resources */,
+				7779623C28B6E6DC005F8B44 /* Spain@3x.png in Resources */,
+				7779622E28B6E6DC005F8B44 /* Italy@2x.png in Resources */,
+				7779623D28B6E6DC005F8B44 /* Estonia@2x.png in Resources */,
+				7779623A28B6E6DC005F8B44 /* Spain@2x.png in Resources */,
+				7779624428B6E6DC005F8B44 /* Monaco@2x.png in Resources */,
+				777961F328B6E64F005F8B44 /* Preview Assets.xcassets in Resources */,
+				7779624328B6E6DC005F8B44 /* Germany@3x.png in Resources */,
+				7779623828B6E6DC005F8B44 /* Poland@3x.png in Resources */,
+				7779624028B6E6DC005F8B44 /* US@3x.png in Resources */,
+				7779623628B6E6DC005F8B44 /* Russia@2x.png in Resources */,
+				7779623F28B6E6DC005F8B44 /* Nigeria@2x.png in Resources */,
+				777961F028B6E64F005F8B44 /* Assets.xcassets in Resources */,
+				7779623028B6E6DC005F8B44 /* Estonia@3x.png in Resources */,
+				7779622F28B6E6DC005F8B44 /* Germany@2x.png in Resources */,
+				7779624128B6E6DC005F8B44 /* Italy@3x.png in Resources */,
+				7779623E28B6E6DC005F8B44 /* France@2x.png in Resources */,
+				7779623B28B6E6DC005F8B44 /* Russia@3x.png in Resources */,
+				7779624228B6E6DC005F8B44 /* France@3x.png in Resources */,
+				7779623228B6E6DC005F8B44 /* US@2x.png in Resources */,
+				7779623928B6E6DC005F8B44 /* UK@2x.png in Resources */,
+				7779623728B6E6DC005F8B44 /* Nigeria@3x.png in Resources */,
+				7779623528B6E6DC005F8B44 /* Ireland@2x.png in Resources */,
+				7779622D28B6E6DC005F8B44 /* Monaco@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777961F628B6E64F005F8B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7779620028B6E64F005F8B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		777961E428B6E64E005F8B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				777961EE28B6E64E005F8B44 /* ContentView.swift in Sources */,
+				777961EC28B6E64E005F8B44 /* HWSSU_02_GuessTheFlagApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777961F428B6E64F005F8B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				777961FD28B6E64F005F8B44 /* HWSSU_02_GuessTheFlagTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777961FE28B6E64F005F8B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7779620728B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITests.swift in Sources */,
+				7779620928B6E64F005F8B44 /* HWSSU_02_GuessTheFlagUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		777961FA28B6E64F005F8B44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 777961E728B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */;
+			targetProxy = 777961F928B6E64F005F8B44 /* PBXContainerItemProxy */;
+		};
+		7779620428B6E64F005F8B44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 777961E728B6E64E005F8B44 /* HWSSU-02-GuessTheFlag */;
+			targetProxy = 7779620328B6E64F005F8B44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7779620A28B6E64F005F8B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7779620B28B6E64F005F8B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7779620D28B6E64F005F8B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HWSSU-02-GuessTheFlag/Preview Content\"";
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlag";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7779620E28B6E64F005F8B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HWSSU-02-GuessTheFlag/Preview Content\"";
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlag";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7779621028B6E64F005F8B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlagTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWSSU-02-GuessTheFlag.app/HWSSU-02-GuessTheFlag";
+			};
+			name = Debug;
+		};
+		7779621128B6E64F005F8B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlagTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWSSU-02-GuessTheFlag.app/HWSSU-02-GuessTheFlag";
+			};
+			name = Release;
+		};
+		7779621328B6E64F005F8B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlagUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "HWSSU-02-GuessTheFlag";
+			};
+			name = Debug;
+		};
+		7779621428B6E64F005F8B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWSSU-02-GuessTheFlagUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "HWSSU-02-GuessTheFlag";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		777961E328B6E64E005F8B44 /* Build configuration list for PBXProject "HWSSU-02-GuessTheFlag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7779620A28B6E64F005F8B44 /* Debug */,
+				7779620B28B6E64F005F8B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7779620C28B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7779620D28B6E64F005F8B44 /* Debug */,
+				7779620E28B6E64F005F8B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7779620F28B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlagTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7779621028B6E64F005F8B44 /* Debug */,
+				7779621128B6E64F005F8B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7779621228B6E64F005F8B44 /* Build configuration list for PBXNativeTarget "HWSSU-02-GuessTheFlagUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7779621328B6E64F005F8B44 /* Debug */,
+				7779621428B6E64F005F8B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 777961E028B6E64E005F8B44 /* Project object */;
+}
