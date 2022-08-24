@@ -22,6 +22,10 @@ struct ContentView: View {
         static func textNumberOfPeople(number: Int) -> String {
             "\(number) people"
         }
+        
+        static var currencyFormat: FloatingPointFormatStyle<Double>.Currency = {
+            .currency(code: Locale.current.currencyCode ?? Constants.usd)
+        }()
     }
     
     @State private var checkAmount = 0.0
@@ -29,9 +33,9 @@ struct ContentView: View {
     @State private var tipPercentage = 20
     
     let tipPercentages = [10, 15, 20, 25, 0]
+    let allPercentages = [Int](0...100)
     
     var totalPerPerson: Double {
-        // calculateTotalPerPerson()
         calculateTotalOrTotalPerPerson(showTotal: false)
     }
     
@@ -42,12 +46,10 @@ struct ContentView: View {
             Form {
                 // section 1
                 Section {
-                    
                     TextField(
                         Constants.amount,
                         value: $checkAmount,
-                        format: .currency(
-                            code: Locale.current.currencyCode ?? Constants.usd))
+                        format: Constants.currencyFormat)
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused)
                     
@@ -61,25 +63,24 @@ struct ContentView: View {
                 // section 2
                 Section {
                     Picker(Constants.tipPercent, selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
+                        ForEach(allPercentages, id: \.self) {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
                 } header: {
                     Text(Constants.howMuchTip)
                 }
                 
-                // section 1
+                // section 3
                 Section {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? Constants.usd))
+                    Text(totalPerPerson, format: Constants.currencyFormat)
                 } header: {
                     Text(Constants.amtPerPerson)
                 }
                 
                 // section 4
                 Section {
-                    Text("\(calculateTotalOrTotalPerPerson(showTotal: true), format: .currency(code: Locale.current.currencyCode ?? Constants.usd))")
+                    Text("\(calculateTotalOrTotalPerPerson(showTotal: true), format: Constants.currencyFormat)")
                 } header: {
                     Text(Constants.grandTotalText)
                 }
