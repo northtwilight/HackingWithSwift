@@ -8,25 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    private struct Constants {
+        static let deleteHeader = "Delete selection"
+        
+    }
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-//                LinearGradient(
-//                    gradient: Gradient(
-//                        stops: [
-//                            Gradient.Stop(color: .white, location: 0.45),
-//
-//                            Gradient.Stop(color: .black, location: 0.55),
-//                                ]),
-//                    startPoint: .top,
-//                    endPoint: .bottom)
-                
-//                RadialGradient(
-//                    gradient: Gradient(colors: [.blue, .black]),
-//                    center: .center,
-//                    startRadius: 20,
-//                    endRadius: 200)
-                
                 AngularGradient(
                     gradient: Gradient(
                         colors: [
@@ -39,10 +27,41 @@ struct ContentView: View {
                         ]),
                     center: .center)
             }
-            Text("Your content")
-                .foregroundColor(.secondary)
-                .padding(50)
-                .background(.ultraThinMaterial)
+            
+            VStack {
+                Spacer()
+                
+                Text("Your content")
+                    .foregroundColor(.secondary)
+                    .padding(50)
+                    .background(.ultraThinMaterial)
+                
+                Spacer()
+                
+                Button("Button 1") { }
+                    .buttonStyle(.bordered)
+                    .tint(.orange)
+                Button("Button 2", role: .destructive) { }
+                    .buttonStyle(.bordered)
+                    .tint(.mint)
+                Button("Button 3") { }
+                    .buttonStyle(.borderedProminent)
+                Button("Button 4", role: .destructive) { }
+                    .buttonStyle(.borderedProminent)
+                Button {
+                    print("Button was tapped")
+                } label: {
+                    Text("Tap me!")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.green)
+                }
+                
+                Spacer()
+            }
+            
+            
+            
         }.ignoresSafeArea()
     }
 }
