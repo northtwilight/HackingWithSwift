@@ -21,10 +21,19 @@ struct ContentView: View {
         static let uk = "UK"
         static let us = "US"
         
+        // flags and scoring
         static let tapTheFlagOf = "Tap the flag of"
+        static let correctScoreTitle = "Correct"
+        static let incorrectScoreTitle = "Incorrect"
+        
+        // flow control
+        static let continueQuestionHeader = "Continue"
     }
     
-    var countries: [String] = [
+    @State private var showingScore = false
+    @State private var scoreTitle = ""
+    
+    @State private var countries: [String] = [
         Constants.estonia,
         Constants.france,
         Constants.germany,
@@ -36,29 +45,66 @@ struct ContentView: View {
         Constants.spain,
         Constants.uk,
         Constants.us
-    ]
-    var correctAnswer = Int.random(in: 0...2)
+    ].shuffled()
+    
+    @State private var correctAnswer = Int.random(in: 0...2)
     
     var body: some View {
         ZStack {
-            Color.blue.ignoresSafeArea()
-            VStack(spacing: 20) {
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [.blue, .black]),
+                    startPoint: .top,
+                    endPoint: .bottom)
+            .ignoresSafeArea()
+            
+            VStack(spacing: 15) {
+                Spacer()
+                
                 Text(Constants.tapTheFlagOf)
                     .foregroundColor(.white)
+                    .font(.subheadline.weight(.heavy))
+                
                 Text(countries[correctAnswer])
                     .foregroundColor(.white)
+                    .font(.largeTitle.weight(.semibold))
+                
+                var buttonRange: Range<Int> = 0..<3
+                ForEach(buttonRange) { number in
+                    Button {
+                        flagTapped(number)
+                    } label: {
+                        Image(countries[number])
+                            .renderingMode(.original)
+                            .clipShape(Capsule())
+                            .shadow(radius: 5)
+                    }
+                    
+                    
+                }
+                Spacer()
             }
         }
-        
-        ForEach(0..<3) { number in
-            Button {
-                // flag was tapped
-            } label: {
-                Image(countries[number])
-                    .renderingMode(.original)
-            }
+        .alert(scoreTitle, isPresented: $showingScore) {
+            Button("Continue", action: askQuestion)
+        } message: {
+            Text("Your score is what again??")
         }
-        
+    }
+    
+    func flagTapped(_ number: Int) {
+        if number == correctAnswer {
+            scoreTitle = Constants.correctScoreTitle
+        } else {
+            scoreTitle = Constants.incorrectScoreTitle
+        }
+        showingScore = true
+    }
+    
+    func askQuestion() {
+        countries.shuffle()
+        let deuce = 0...2
+        correctAnswer = Int.random(in: deuce)
     }
 }
 
