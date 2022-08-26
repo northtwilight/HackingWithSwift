@@ -28,6 +28,9 @@ struct ContentView: View {
         
         // flow control
         static let continueQuestionHeader = "Continue"
+        static let restartGameQuestion = "Restart Game?"
+        static let cancel = "Cancel"
+        static let finalRoundMessage = "This is the final round"
         
         // radial stops
         static let start = CGFloat(200)
@@ -49,8 +52,8 @@ struct ContentView: View {
         }
         
         static let maxRound = 8
-        static let lastRoundTitle = "Last round"
-        static let lastRoundMessage = "Round number will reset"
+        static let lastRoundWarningTitle = "Last round"
+        static let lastRoundWarningMessage = "Round number will reset"
     }
     
     @State private var showingScore = false
@@ -144,21 +147,20 @@ struct ContentView: View {
             }
         }
         .alert(scoreTitle, isPresented: $showingScore) {
-            Button("Continue", action: askQuestion)
+            Button(Constants.continueQuestionHeader, action: askQuestion)
         } message: {
             Text(messageText)
         }
         
-        .alert(Constants.lastRoundTitle, isPresented: $showEndOfGameAlert) {
-            Button("Restart Game?", action: restart)
+        .alert(Constants.lastRoundWarningTitle, isPresented: $showEndOfGameAlert) {
+            Button(Constants.restartGameQuestion, action: restart)
+            Button(Constants.cancel, role: .cancel, action: {})
         } message: {
-            Text("This is the final round")
+            Text(Constants.finalRoundMessage)
         }
     }
     
     func flagTapped(_ number: Int) {
-        currentRound += 1
-        
         if currentRound < 8 {
             if number == correctAnswer {
                 scoreTitle = Constants.correctScoreTitle
@@ -171,8 +173,8 @@ struct ContentView: View {
             }
             showingScore = true
             showEndOfGameAlert = false
-        } else if currentRound == 8 {
-            restart()
+        } else if currentRound >= 8 {
+            showEndOfGameAlert = true
         }
     }
     
@@ -180,12 +182,13 @@ struct ContentView: View {
         countries.shuffle()
         let deuce = 0...2
         correctAnswer = Int.random(in: deuce)
+        
+        currentRound += 1
     }
     
     func restart() {
         score = 0
         currentRound = 0
-        showEndOfGameAlert = true
         
         askQuestion()
     }
