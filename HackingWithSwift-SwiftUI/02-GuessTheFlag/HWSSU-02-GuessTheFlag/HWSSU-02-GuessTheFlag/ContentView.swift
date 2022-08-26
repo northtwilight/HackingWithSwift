@@ -35,7 +35,6 @@ struct ContentView: View {
         
         // screenTitle
         static let screenTitle = "Guess the Flag"
-        static let scorePlaceholder = "Score: ???"
         
         static func display(score: Int) -> String {
             "Score: \(score)"
