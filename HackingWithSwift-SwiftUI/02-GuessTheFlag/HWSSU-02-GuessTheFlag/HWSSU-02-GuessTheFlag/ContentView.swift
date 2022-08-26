@@ -186,6 +186,8 @@ struct ContentView: View {
         score = 0
         currentRound = 0
         showEndOfGameAlert = true
+        
+        askQuestion()
     }
 }
 
