@@ -173,10 +173,7 @@ struct ContentView: View {
             showEndOfGameAlert = false
         } else if currentRound == 8 {
             restart()
-            return
         }
-        
-        
     }
     
     func askQuestion() {
