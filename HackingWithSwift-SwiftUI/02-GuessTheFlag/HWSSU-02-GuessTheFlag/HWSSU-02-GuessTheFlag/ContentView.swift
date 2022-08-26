@@ -158,21 +158,26 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
-        if currentRound == 7 {
-//            showEndOfGameAlert = true
-            restart()
-        } else if number == correctAnswer {
-            scoreTitle = Constants.correctScoreTitle
-            score += 1
-            messageText = ""
-        } else {
-            scoreTitle = Constants.incorrectScoreTitle
-            messageText = Constants.displayIncorrectAnswer(wrongAnswer: countries[number])
-            score -= 1
-        }
-        showingScore = true
         currentRound += 1
-        showEndOfGameAlert = true
+        
+        if currentRound < 8 {
+            if number == correctAnswer {
+                scoreTitle = Constants.correctScoreTitle
+                score += 1
+                messageText = ""
+            } else {
+                scoreTitle = Constants.incorrectScoreTitle
+                messageText = Constants.displayIncorrectAnswer(wrongAnswer: countries[number])
+                score -= 1
+            }
+            showingScore = true
+            showEndOfGameAlert = false
+        } else if currentRound == 8 {
+            restart()
+            return
+        }
+        
+        
     }
     
     func askQuestion() {
@@ -181,13 +186,9 @@ struct ContentView: View {
         correctAnswer = Int.random(in: deuce)
     }
     
-    func incrementRound() {
-        currentRound += 1
-    }
-    
     func restart() {
         score = 0
-        currentRound = 1
+        currentRound = 0
         showEndOfGameAlert = true
     }
 }
