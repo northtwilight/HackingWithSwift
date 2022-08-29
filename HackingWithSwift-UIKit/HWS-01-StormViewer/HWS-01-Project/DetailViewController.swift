@@ -30,4 +30,8 @@ class DetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
+    
+    func pictured(photoNumber: Int, allImageCount: Int) -> String {
+        "Picture \(photoNumber) of \(allImageCount)"
+    }
 }

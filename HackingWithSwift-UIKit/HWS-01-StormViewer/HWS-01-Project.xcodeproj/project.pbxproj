@@ -24,7 +24,6 @@
 		774EE33E28343956003EC490 /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 774EE33428343956003EC490 /* nssl0033.jpg */; };
 		774EE33F28343956003EC490 /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 774EE33528343956003EC490 /* nssl0034.jpg */; };
 		774EE341283439C7003EC490 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774EE340283439C7003EC490 /* DetailViewController.swift */; };
-		776106212876B39300B479AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776106202876B39300B479AD /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +65,6 @@
 		774EE33428343956003EC490 /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0033.jpg; sourceTree = "<group>"; };
 		774EE33528343956003EC490 /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0034.jpg; sourceTree = "<group>"; };
 		774EE340283439C7003EC490 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		776106202876B39300B479AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +116,6 @@
 				774EE2E428340F9D003EC490 /* AppDelegate.swift */,
 				774EE2E628340F9D003EC490 /* SceneDelegate.swift */,
 				774EE2E828340F9D003EC490 /* ViewController.swift */,
-				776106202876B39300B479AD /* ViewModel.swift */,
 				774EE2EA28340F9D003EC490 /* Main.storyboard */,
 				774EE340283439C7003EC490 /* DetailViewController.swift */,
 				774EE2ED28340F9E003EC490 /* Assets.xcassets */,
@@ -287,7 +284,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776106212876B39300B479AD /* ViewModel.swift in Sources */,
 				774EE2E928340F9D003EC490 /* ViewController.swift in Sources */,
 				774EE2E528340F9D003EC490 /* AppDelegate.swift in Sources */,
 				774EE2E728340F9D003EC490 /* SceneDelegate.swift in Sources */,
