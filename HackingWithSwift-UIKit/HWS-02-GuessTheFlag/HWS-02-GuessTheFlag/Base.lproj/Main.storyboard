@@ -40,16 +40,25 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KLn-ae-Wbt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CurrentRound" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBu-nH-x5K">
+                                <rect key="frame" x="107" y="498" width="200" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vHr-a1-Fgd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9yN-Rb-1WE"/>
+                            <constraint firstItem="FBu-nH-x5K" firstAttribute="top" secondItem="6gH-tB-rIc" secondAttribute="bottom" constant="50" id="Wxt-kN-z3u"/>
                             <constraint firstItem="gp6-m2-FDv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="amY-tQ-ZOZ"/>
+                            <constraint firstItem="FBu-nH-x5K" firstAttribute="width" secondItem="6gH-tB-rIc" secondAttribute="width" id="fn2-Ty-WHT"/>
                             <constraint firstItem="6gH-tB-rIc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ig3-l8-3B0"/>
                             <constraint firstItem="gp6-m2-FDv" firstAttribute="top" secondItem="vHr-a1-Fgd" secondAttribute="bottom" constant="20" id="nY4-fx-aID"/>
                             <constraint firstItem="vHr-a1-Fgd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="v8n-QR-P8a"/>
                             <constraint firstItem="6gH-tB-rIc" firstAttribute="top" secondItem="gp6-m2-FDv" secondAttribute="bottom" constant="20" id="xyq-J0-zai"/>
+                            <constraint firstItem="FBu-nH-x5K" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yRc-AY-l14"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aXb-Jh-6r9"/>
@@ -57,11 +66,12 @@
                         <outlet property="button1" destination="vHr-a1-Fgd" id="53E-Pq-IYg"/>
                         <outlet property="button2" destination="gp6-m2-FDv" id="Ltx-3M-wUT"/>
                         <outlet property="button3" destination="6gH-tB-rIc" id="qE7-Jc-6sl"/>
+                        <outlet property="currentRoundLabel" destination="FBu-nH-x5K" id="hdA-ch-BnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="843" y="84"/>
+            <point key="canvasLocation" x="842.02898550724649" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7D1-1a-SHt">

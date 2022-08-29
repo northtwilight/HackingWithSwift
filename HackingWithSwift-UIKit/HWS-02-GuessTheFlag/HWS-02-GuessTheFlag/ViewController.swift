@@ -12,15 +12,22 @@ class ViewController: UIViewController {
         static let correct = "Correct"
         static let wrong = "Wrong"
         static let continueDoingStuff = "Continue"
+        static let maxRound = 10
+        static let finalTitle = "This is the final round."
+        static let OK = "OK"
     }
 
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
+    @IBOutlet weak var currentRoundLabel: UILabel!
+    
     var countries = [String]()
     var correctAnswer = 0
     var score = 0
+    private var currentRound = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +58,8 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         correctAnswer = Int.random(in: 0...2)
         title = makeUpdatedTitle(score: score)
+        currentRound += 1
+        currentRoundLabel.text = makeRoundString(currentRound: currentRound)
     }
     
     func styleButtons() {
@@ -63,31 +72,47 @@ class ViewController: UIViewController {
     }
     
     func makeUpdatedTitle(score: Int) -> String {
-        return "\(countries[correctAnswer].uppercased()) :: score: \(score)"
+        "\(countries[correctAnswer].uppercased()) :: score: \(score)"
     }
     
     func makeMessageString(score: Int) -> String {
-        return "Your score is \(score)"
+        "Your score is \(score)"
+    }
+    
+    func makeRoundString(currentRound: Int) -> String {
+        "The present round is \(currentRound)"
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
-        if sender.tag == correctAnswer {
-            title = Constants.correct
-            score += 1
+        if currentRound < Constants.maxRound {
+            if sender.tag == correctAnswer {
+                title = Constants.correct
+                score += 1
+            } else {
+                title = Constants.wrong
+                score -= 1
+            }
+            let ac = UIAlertController(
+                title: title,
+                message: makeMessageString(score: score), preferredStyle: .alert)
+            ac.addAction(UIAlertAction(
+                title: Constants.continueDoingStuff,
+                style: .default,
+                handler: askQuestion))
+            present(ac, animated: true)
         } else {
-            title = Constants.wrong
-            score -= 1
+            let finalAC = UIAlertController(
+                title: Constants.finalTitle,
+                message: makeMessageString(score: score),
+                preferredStyle: .alert)
+            finalAC.addAction(UIAlertAction(title: Constants.OK, style: .default))
+            present(finalAC, animated: true)
+            currentRound = 0
+            score = 0
         }
-        let ac = UIAlertController(
-            title: title,
-            message: makeMessageString(score: score), preferredStyle: .alert)
-        ac.addAction(UIAlertAction(
-            title: Constants.continueDoingStuff,
-            style: .default,
-            handler: askQuestion))
-        present(ac, animated: true)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
