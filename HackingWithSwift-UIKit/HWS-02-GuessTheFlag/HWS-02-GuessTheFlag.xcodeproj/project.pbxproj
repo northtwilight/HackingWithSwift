@@ -13,9 +13,6 @@
 		774EE35628345C49003EC490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 774EE35428345C49003EC490 /* Main.storyboard */; };
 		774EE35828345C4A003EC490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 774EE35728345C4A003EC490 /* Assets.xcassets */; };
 		774EE35B28345C4A003EC490 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 774EE35928345C4A003EC490 /* LaunchScreen.storyboard */; };
-		774EE36628345C4A003EC490 /* HWS_02_GuessTheFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774EE36528345C4A003EC490 /* HWS_02_GuessTheFlagTests.swift */; };
-		774EE37028345C4A003EC490 /* HWS_02_GuessTheFlagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774EE36F28345C4A003EC490 /* HWS_02_GuessTheFlagUITests.swift */; };
-		774EE37228345C4A003EC490 /* HWS_02_GuessTheFlagUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774EE37128345C4A003EC490 /* HWS_02_GuessTheFlagUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +42,7 @@
 		774EE35A28345C4A003EC490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		774EE35C28345C4A003EC490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		774EE36128345C4A003EC490 /* HWS-02-GuessTheFlagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWS-02-GuessTheFlagTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		774EE36528345C4A003EC490 /* HWS_02_GuessTheFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS_02_GuessTheFlagTests.swift; sourceTree = "<group>"; };
 		774EE36B28345C4A003EC490 /* HWS-02-GuessTheFlagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWS-02-GuessTheFlagUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		774EE36F28345C4A003EC490 /* HWS_02_GuessTheFlagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS_02_GuessTheFlagUITests.swift; sourceTree = "<group>"; };
-		774EE37128345C4A003EC490 /* HWS_02_GuessTheFlagUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS_02_GuessTheFlagUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				774EE34D28345C49003EC490 /* HWS-02-GuessTheFlag */,
-				774EE36428345C4A003EC490 /* HWS-02-GuessTheFlagTests */,
-				774EE36E28345C4A003EC490 /* HWS-02-GuessTheFlagUITests */,
 				774EE34C28345C49003EC490 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,23 +100,6 @@
 				774EE35C28345C4A003EC490 /* Info.plist */,
 			);
 			path = "HWS-02-GuessTheFlag";
-			sourceTree = "<group>";
-		};
-		774EE36428345C4A003EC490 /* HWS-02-GuessTheFlagTests */ = {
-			isa = PBXGroup;
-			children = (
-				774EE36528345C4A003EC490 /* HWS_02_GuessTheFlagTests.swift */,
-			);
-			path = "HWS-02-GuessTheFlagTests";
-			sourceTree = "<group>";
-		};
-		774EE36E28345C4A003EC490 /* HWS-02-GuessTheFlagUITests */ = {
-			isa = PBXGroup;
-			children = (
-				774EE36F28345C4A003EC490 /* HWS_02_GuessTheFlagUITests.swift */,
-				774EE37128345C4A003EC490 /* HWS_02_GuessTheFlagUITestsLaunchTests.swift */,
-			);
-			path = "HWS-02-GuessTheFlagUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				774EE36628345C4A003EC490 /* HWS_02_GuessTheFlagTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				774EE37028345C4A003EC490 /* HWS_02_GuessTheFlagUITests.swift in Sources */,
-				774EE37228345C4A003EC490 /* HWS_02_GuessTheFlagUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,15 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    private struct Constants {
+        static let noImageFound = "No image found"
+        static let imageNameError = "Can't find image's description, exiting early"
+        static let noSelectedImageSet = "No selected image set"
+    }
     @IBOutlet weak var imageView: UIImageView!
     
     var selectedImage: String?
+    var selectedImageText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +41,25 @@ class DetailViewController: UIViewController {
         navigationController?.hidesBarsOnTap = false
     }
     
+    func pictured(photoNumber: Int, allImageCount: Int) -> String {
+        "Picture \(photoNumber) of \(allImageCount)"
+    }
+    
     @objc func shareTapped() {
         guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
-            print("No image found")
+            print(Constants.noImageFound)
             return
         }
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        guard let description = imageView.image?.description else {
+            print(Constants.imageNameError)
+            return
+        }
+        guard let imageToLoad = selectedImage else {
+            print(Constants.noSelectedImageSet)
+            return
+        }
+        
+        let vc = UIActivityViewController(activityItems: [image, imageToLoad, description], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }

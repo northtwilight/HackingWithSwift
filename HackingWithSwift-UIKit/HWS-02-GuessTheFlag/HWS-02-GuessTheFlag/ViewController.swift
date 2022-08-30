@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
     private struct Constants {
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
         static let maxRound = 10
         static let finalTitle = "This is the final round."
         static let OK = "OK"
+        static let two = CGFloat(2)
     }
 
     @IBOutlet weak var button1: UIButton!
@@ -23,11 +25,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var currentRoundLabel: UILabel!
     
+    let scoreSubject = CurrentValueSubject<Int, Never>(0)
+    
     var countries = [String]()
     var correctAnswer = 0
     var score = 0
     private var currentRound = 0
-    
+    var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,26 +53,43 @@ class ViewController: UIViewController {
         ]
         askQuestion()
         print(countries)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: displayScoreTapped(),
+            style: .plain,
+            target: self,
+            action: #selector(displayScoreTapped))
+        
+        scoreSubject.sink { [weak self] score in
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItem?.title = "Sc: \(score)"
+            print("\(self.scoreSubject.value) ?!! ")
+        }.store(in: &cancellables)
     }
 
     func askQuestion(action: UIAlertAction! = nil) {
         countries.shuffle()
+        
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
+
         correctAnswer = Int.random(in: 0...2)
         title = makeUpdatedTitle(score: score)
         currentRound += 1
         currentRoundLabel.text = makeRoundString(currentRound: currentRound)
+        navigationItem.rightBarButtonItem?.title = displayScoreTapped()
+        scoreSubject.value = score
     }
     
     func styleButtons() {
-        button1.layer.borderWidth = 2
-        button2.layer.borderWidth = 2
-        button3.layer.borderWidth = 2
-        button1.layer.borderColor = UIColor.lightGray.cgColor
-        button2.layer.borderColor = UIColor.lightGray.cgColor
-        button3.layer.borderColor = UIColor.lightGray.cgColor
+        let buttons = [button1, button2, button3]
+        
+        for button in buttons {
+            guard let button = button else { return }
+            button.layer.borderWidth = Constants.two
+            button.layer.borderColor = UIColor.lightGray.cgColor
+        }
     }
     
     func makeUpdatedTitle(score: Int) -> String {
@@ -93,6 +114,7 @@ class ViewController: UIViewController {
                 title = Constants.wrong
                 score -= 1
             }
+            print("scoreSubject value = \(scoreSubject.value) :: score \(score)")
             let ac = UIAlertController(
                 title: title,
                 message: makeMessageString(score: score), preferredStyle: .alert)
@@ -111,6 +133,10 @@ class ViewController: UIViewController {
             currentRound = 0
             score = 0
         }
+    }
+    
+    @objc func displayScoreTapped() -> String {
+        "\(scoreSubject.value) !!!"
     }
     
     override func didReceiveMemoryWarning() {
