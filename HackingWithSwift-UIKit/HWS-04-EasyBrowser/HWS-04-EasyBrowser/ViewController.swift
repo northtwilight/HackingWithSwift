@@ -5,27 +5,49 @@
 //  Created by Massimo Savino on 2022-05-18.
 //
 
+import Combine
 import UIKit
 import WebKit
 
 class ViewController: UIViewController, WKNavigationDelegate {
     private struct Constants {
-        static let hackingWithSwiftURL = "hackingwithswift.com"
+        struct Sites {
+            static let hackingWithSwiftURL = "hackingwithswift.com"
+            static let slashdotURL = "slashdot.org"
+            static let appleCom = "apple.com"
+            static let hackerNews = "news.ycombinator.com"
+            static let lobsters = "lobste.rs"
+        }
+        
         static let open = "Open"
         static let openPage = "Open page..."
-        static let appleCom = "apple.com"
+        
         static let cancel = "Cancel"
         static let https = "https://"
         static let estimatedProgress = "estimatedProgress"
+        
+        static let forbiddenTitle = "Site access forbidden"
+        static let forbiddenMessage = "Accessing this site on this browser is prohibited."
     }
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = [ Constants.appleCom, Constants.hackingWithSwiftURL ]
+    var websites = [
+        Constants.Sites.appleCom,
+        Constants.Sites.hackingWithSwiftURL,
+        Constants.Sites.slashdotURL,
+        Constants.Sites.hackerNews,
+        Constants.Sites.lobsters
+    ]
+    
+    lazy var show404Subject = CurrentValueSubject<Bool, Never>(show404)
+    var show404 = false
+    var cancellable: AnyCancellable?
     
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
         view = webView
+        configureBars()
     }
 
     override func viewDidLoad() {
@@ -50,6 +72,30 @@ class ViewController: UIViewController, WKNavigationDelegate {
         toolbarItems = [progressButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
         
+        loadURL()
+        
+        cancellable = show404Subject.sink { [weak self] shouldShow404 in
+            self?.show404 = shouldShow404
+            if self?.show404 == true {
+                self?.make404Alert()
+            }
+        }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func configureBars() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backgroundColor = UIColor.systemGray
+        
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    func loadURL() {
         guard let url = URL(string: Constants.https + websites[0]) else {
             print("Cannot load URL properly")
             return
@@ -82,7 +128,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     func openPage(action: UIAlertAction) {
-        guard let title = action.title, let url = URL(string: Constants.https + title) else {
+        guard let title = action.title,
+            let url = URL(string: Constants.https + title)
+        else {
             let ac = UIAlertController(
                 title: "URL blocked",
                 message: "URL not allowed",
@@ -114,11 +162,21 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 if host.contains(website) {
                     decisionHandler(.allow)
                     return
+                } else {
+                    show404Subject.send(show404)
                 }
             }
         }
         decisionHandler(.cancel)
     }
-    
+    func make404Alert() {
+        let forbiddenAlert = UIAlertController(
+            title: Constants.forbiddenTitle,
+            message: Constants.forbiddenMessage,
+            preferredStyle: .alert)
+        forbiddenAlert.addAction(UIAlertAction(
+            title: "OK", style: .default))
+        present(forbiddenAlert, animated: true)
+    }
 }
 
