@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77A4755D28C5008D00368915 /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4755C28C5008D00368915 /* WebsiteViewController.swift */; };
+		77A4755F28C5023700368915 /* WebsiteConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A4755E28C5023700368915 /* WebsiteConstants.swift */; };
 		77C6E856283560D000B2C561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E855283560D000B2C561 /* AppDelegate.swift */; };
 		77C6E858283560D000B2C561 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E857283560D000B2C561 /* SceneDelegate.swift */; };
 		77C6E85A283560D000B2C561 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6E859283560D000B2C561 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77A4755C28C5008D00368915 /* WebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
+		77A4755E28C5023700368915 /* WebsiteConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteConstants.swift; sourceTree = "<group>"; };
 		77C6E852283560D000B2C561 /* HWS-04-EasyBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HWS-04-EasyBrowser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C6E855283560D000B2C561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C6E857283560D000B2C561 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77A4756528C5321C00368915 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				77C6E859283560D000B2C561 /* ViewController.swift */,
+				77A4755C28C5008D00368915 /* WebsiteViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		77C6E849283560D000B2C561 = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +71,8 @@
 			children = (
 				77C6E855283560D000B2C561 /* AppDelegate.swift */,
 				77C6E857283560D000B2C561 /* SceneDelegate.swift */,
-				77C6E859283560D000B2C561 /* ViewController.swift */,
+				77A4755E28C5023700368915 /* WebsiteConstants.swift */,
+				77A4756528C5321C00368915 /* ViewControllers */,
 				77C6E85B283560D000B2C561 /* Main.storyboard */,
 				77C6E85E283560D100B2C561 /* Assets.xcassets */,
 				77C6E860283560D100B2C561 /* LaunchScreen.storyboard */,
@@ -138,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A4755D28C5008D00368915 /* WebsiteViewController.swift in Sources */,
 				77C6E85A283560D000B2C561 /* ViewController.swift in Sources */,
+				77A4755F28C5023700368915 /* WebsiteConstants.swift in Sources */,
 				77C6E856283560D000B2C561 /* AppDelegate.swift in Sources */,
 				77C6E858283560D000B2C561 /* SceneDelegate.swift in Sources */,
 			);

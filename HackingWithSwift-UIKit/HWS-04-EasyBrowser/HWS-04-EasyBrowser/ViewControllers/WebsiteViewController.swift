@@ -1,65 +1,63 @@
 //
-//  ViewController.swift
+//  WebsiteViewController.swift
 //  HWS-04-EasyBrowser
 //
-//  Created by Massimo Savino on 2022-05-18.
+//  Created by Massimo Savino on 2022-09-04.
 //
 
 import Combine
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
-    private struct Constants {
-        struct Sites {
-            static let hackingWithSwiftURL = "hackingwithswift.com"
-            static let slashdotURL = "slashdot.org"
-            static let appleCom = "apple.com"
-            static let hackerNews = "news.ycombinator.com"
-            static let lobsters = "lobste.rs"
-        }
-        
-        static let open = "Open"
-        static let openPage = "Open page..."
-        
-        static let cancel = "Cancel"
-        static let https = "https://"
-        static let estimatedProgress = "estimatedProgress"
-        
-        static let forbiddenTitle = "Site access forbidden"
-        static let forbiddenMessage = "Accessing this site on this browser is prohibited."
-    }
+class WebsiteViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var websites = [
-        Constants.Sites.appleCom,
-        Constants.Sites.hackingWithSwiftURL,
-        Constants.Sites.slashdotURL,
-        Constants.Sites.hackerNews,
-        Constants.Sites.lobsters
+        WebsiteConstants.Sites.appleCom,
+        WebsiteConstants.Sites.hackingWithSwiftURL,
+        WebsiteConstants.Sites.slashdotURL,
+        WebsiteConstants.Sites.hackerNews,
+        WebsiteConstants.Sites.lobsters
     ]
+    
+    var currentWebsite: Int?
     
     lazy var show404Subject = CurrentValueSubject<Bool, Never>(show404)
     var show404 = false
     var cancellable: AnyCancellable?
-    
-    override func loadView() {
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-        configureBars()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: Constants.open,
-            style: .plain,
-            target: self,
-            action: #selector(openTapped))
+        
+        guard currentWebsite != nil else {
+            print("Current website on \(#file) is still nil")
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        setupWebsiteViewController()
+        loadURL()
+        
+        cancellable = show404Subject.sink { [weak self] shouldShow404 in
+            self?.show404 = shouldShow404
+            if self?.show404 == true {
+                self?.make404Alert()
+            }
+        }
+
+    }
+    
+    func setupWebsiteViewController() {
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
+    
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: WebsiteConstants.open,
+            style: .plain,
+            target: self,
+            action: #selector(openTapped))
         
         let spacer = UIBarButtonItem(
             barButtonSystemItem: .flexibleSpace,
@@ -69,34 +67,30 @@ class ViewController: UIViewController, WKNavigationDelegate {
             barButtonSystemItem: .refresh,
             target: webView,
             action: #selector(webView.reload))
-        toolbarItems = [progressButton, spacer, refresh]
+        let back = UIBarButtonItem(
+            title: "Back",
+            style: .plain,
+            target: webView,
+            action: #selector(webView.goBack))
+        let forward = UIBarButtonItem(
+            title: "Forward",
+            style: .plain,
+            target: webView,
+            action: #selector(webView.goForward))
+        
+        toolbarItems = [back, progressButton, spacer, refresh, forward]
         navigationController?.isToolbarHidden = false
-        
-        loadURL()
-        
-        cancellable = show404Subject.sink { [weak self] shouldShow404 in
-            self?.show404 = shouldShow404
-            if self?.show404 == true {
-                self?.make404Alert()
-            }
-        }
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
-    func configureBars() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = UIColor.systemGray
-        
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    override func loadView() {
+        webView = WKWebView()
+        webView.navigationDelegate = self
+        view = webView
     }
     
     func loadURL() {
-        guard let url = URL(string: Constants.https + websites[0]) else {
+        guard let currentWebsite = currentWebsite,
+              let url = URL(string: WebsiteConstants.https + websites[currentWebsite]) else {
             print("Cannot load URL properly")
             return
         }
@@ -111,7 +105,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     @objc func openTapped() {
         let ac = UIAlertController(
-            title: Constants.openPage,
+            title: WebsiteConstants.openPage,
             message: nil,
             preferredStyle: .actionSheet)
         for website in websites {
@@ -121,7 +115,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 handler: openPage))
         }
         ac.addAction(UIAlertAction(
-            title: Constants.cancel,
+            title: WebsiteConstants.cancel,
             style: .cancel))
         ac.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         present(ac, animated: true)
@@ -129,7 +123,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     func openPage(action: UIAlertAction) {
         guard let title = action.title,
-            let url = URL(string: Constants.https + title)
+            let url = URL(string: WebsiteConstants.https + title)
         else {
             let ac = UIAlertController(
                 title: "URL blocked",
@@ -145,12 +139,23 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == Constants.estimatedProgress {
+        if keyPath == WebsiteConstants.estimatedProgress {
             progressView.progress = Float(webView.estimatedProgress)
         }
     }
 
+    func make404Alert() {
+        let forbiddenAlert = UIAlertController(
+            title: WebsiteConstants.forbiddenTitle,
+            message: WebsiteConstants.forbiddenMessage,
+            preferredStyle: .alert)
+        forbiddenAlert.addAction(UIAlertAction(
+            title: "OK", style: .default))
+        present(forbiddenAlert, animated: true)
+    }
+    
     // MARK: WebView delegate methods
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
@@ -164,19 +169,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
                     return
                 } else {
                     show404Subject.send(show404)
+                    
                 }
             }
         }
         decisionHandler(.cancel)
     }
-    func make404Alert() {
-        let forbiddenAlert = UIAlertController(
-            title: Constants.forbiddenTitle,
-            message: Constants.forbiddenMessage,
-            preferredStyle: .alert)
-        forbiddenAlert.addAction(UIAlertAction(
-            title: "OK", style: .default))
-        present(forbiddenAlert, animated: true)
-    }
+    
 }
-
