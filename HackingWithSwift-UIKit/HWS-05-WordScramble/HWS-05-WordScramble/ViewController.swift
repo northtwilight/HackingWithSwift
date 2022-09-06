@@ -16,26 +16,29 @@ class ViewController: UITableViewController {
         static let wordUsedAlready = "Word used already"
         static let beMore = "Be more original!"
         static let wordNotPossible = "Word not possible"
-        
+        static let silkworm = "silkworm"
+        static let start = "start"
+        static let txt = "txt"
+        static let carriageReturn = "\n"
+        static let submit = "Submit"
+        static let cellIdentifier = "Cell"
+        static let en = "en"
     }
-    
+
     var viewModel = ViewModel()
-    
-    var allWords: [String] = [String]()
-    var usedWords: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(startGame))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
-        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
-            if let startWords = try? String(contentsOf: startWordsURL) {
-                allWords = startWords.components(separatedBy: "\n")
-            }
-            if allWords.isEmpty {
-                allWords = ["silkworm"]
-            }
-        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(startGame))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(promptForAnswer))
+        
+        viewModel.workoutAllWords()
         startGame()
     }
     
@@ -46,7 +49,7 @@ class ViewController: UITableViewController {
             preferredStyle: .alert)
         ac.addTextField()
         
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
+        let submitAction = UIAlertAction(title: Constants.submit, style: .default) { [weak self, weak ac] action in
             guard let answer = ac?.textFields?[0].text else { return }
             self?.submit(answer)
         }
@@ -54,16 +57,15 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
-    func cantSpell(title: String) -> String {
-        return "You can't spell that word from \(title)"
-    }
-    
     func submit(_ answer: String) {
+        // Solution for the bug in the official project -
+        // Ensures we only use the lower case word in all cases
         let lowerAnswer = answer.lowercased()
+        
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(lowerAnswer, at: 0)
+                    viewModel.usedWords.insert(lowerAnswer, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
                     return
@@ -81,24 +83,24 @@ class ViewController: UITableViewController {
             guard let title = title?.lowercased() else { return }
             showErrorMessage(
                 title: Constants.wordNotPossible,
-                message: cantSpell(title: title))
+                message: viewModel.cantSpell(title: title))
         }
         
     }
 
     @objc func startGame() {
-        title = allWords.randomElement()
-        usedWords.removeAll(keepingCapacity: true)
+        title = viewModel.allWords.randomElement()
+        viewModel.usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usedWords.count
+        return viewModel.usedWords.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = usedWords[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath)
+        cell.textLabel?.text = viewModel.usedWords[indexPath.row]
         return cell
     }
     
@@ -127,7 +129,7 @@ class ViewController: UITableViewController {
     }
     
     func isOriginal(word: String) -> Bool {
-        return !usedWords.contains(word)
+        return !viewModel.usedWords.contains(word)
     }
     
     func isReal(word: String) -> Bool {
@@ -138,7 +140,7 @@ class ViewController: UITableViewController {
             range: range,
             startingAt: 0,
             wrap: false,
-            language: "en")
+            language: Constants.en)
         if word.utf16.count < 3 {
             return false
         } else if word == title {
