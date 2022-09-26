@@ -64,7 +64,13 @@ struct ContentView: View {
                 Section {
                     Picker(Constants.tipPercent, selection: $tipPercentage) {
                         ForEach(allPercentages, id: \.self) {
-                            Text($0, format: .percent)
+                            if tipPercentage == 0 {
+                                Text($0, format: .percent)
+                                    .foregroundColor(Color.red)
+                            } else {
+                                Text($0, format: .percent)
+                            }
+                            
                         }
                     }
                 } header: {
