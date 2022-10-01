@@ -20,6 +20,9 @@
 		7712978F28E7CD9B0006AAF7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712978E28E7CD9B0006AAF7 /* ViewModel.swift */; };
 		7712979328E7DE890006AAF7 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7712979128E7DE890006AAF7 /* level2.txt */; };
 		7712979428E7DE890006AAF7 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7712979228E7DE890006AAF7 /* level1.txt */; };
+		77E58B8428E8C6E5007C41A6 /* LabelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E58B8328E8C6E5007C41A6 /* LabelConfig.swift */; };
+		77E58B8728E8E2AB007C41A6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E58B8628E8E2AB007C41A6 /* Config.swift */; };
+		77E58B8928E8E475007C41A6 /* TextFieldConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E58B8828E8E475007C41A6 /* TextFieldConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		7712978E28E7CD9B0006AAF7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7712979128E7DE890006AAF7 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 		7712979228E7DE890006AAF7 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		77E58B8328E8C6E5007C41A6 /* LabelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelConfig.swift; sourceTree = "<group>"; };
+		77E58B8628E8E2AB007C41A6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		77E58B8828E8E475007C41A6 /* TextFieldConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 		7712975A28E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */ = {
 			isa = PBXGroup;
 			children = (
+				77E58B8528E8E26E007C41A6 /* Models */,
 				7712979028E7DE890006AAF7 /* TextFiles */,
 				7712975B28E7CBE20006AAF7 /* AppDelegate.swift */,
 				7712975D28E7CBE20006AAF7 /* SceneDelegate.swift */,
@@ -145,6 +152,16 @@
 				7712979128E7DE890006AAF7 /* level2.txt */,
 			);
 			path = TextFiles;
+			sourceTree = "<group>";
+		};
+		77E58B8528E8E26E007C41A6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77E58B8328E8C6E5007C41A6 /* LabelConfig.swift */,
+				77E58B8828E8E475007C41A6 /* TextFieldConfig.swift */,
+				77E58B8628E8E2AB007C41A6 /* Config.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,9 +299,12 @@
 			files = (
 				7712978F28E7CD9B0006AAF7 /* ViewModel.swift in Sources */,
 				7712976028E7CBE20006AAF7 /* ViewController.swift in Sources */,
+				77E58B8428E8C6E5007C41A6 /* LabelConfig.swift in Sources */,
+				77E58B8728E8E2AB007C41A6 /* Config.swift in Sources */,
 				7712975C28E7CBE20006AAF7 /* AppDelegate.swift in Sources */,
 				7712976628E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld in Sources */,
 				7712975E28E7CBE20006AAF7 /* SceneDelegate.swift in Sources */,
+				77E58B8928E8E475007C41A6 /* TextFieldConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

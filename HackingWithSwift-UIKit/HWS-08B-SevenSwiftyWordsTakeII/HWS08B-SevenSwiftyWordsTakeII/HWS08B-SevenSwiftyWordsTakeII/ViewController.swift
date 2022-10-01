@@ -9,7 +9,38 @@ import UIKit
 
 class ViewController: UIViewController {
     private struct Constants {
-        static let introScoreLabel = "Score: 0"
+        static let scoreText = "Score: 0"
+        
+        static let clues = "CLUES"
+        static let answers = "ANSWERS"
+        static let submit = "SUBMIT"
+        static let clear = "CLEAR"
+        static let currentAnswerPlaceholder = "Tap letters to guess"
+        static let multiplier = 0.6
+        static let pointFiveMultiplier = 0.5
+        
+        static let twentyFour = CGFloat(24)
+        static let fortyFour = CGFloat(44)
+        static let plusHundred = CGFloat(100)
+        static let minusHundred = CGFloat(-100)
+        static let buttonsViewWidth = CGFloat(750)
+        static let buttonsViewHeight = CGFloat(320)
+        static let buttonsViewTop = CGFloat(20)
+        static let buttonsViewBottom = CGFloat(-20)
+        static let submitCenterX = CGFloat(-100)
+        static let submitHeight = CGFloat(44)
+        static let clearCenterX = CGFloat(100)
+        static let clearHeight = submitHeight
+        static let buttonWidth = CGFloat(150)
+        static let buttonHeight = CGFloat(80)
+        static let buttonSize = CGFloat(36)
+        
+        static let wellDone = "Well done!"
+        static let nextLevel = "Are you ready for the next level?"
+        static let letsGo = "Let's go!"
+        static func configureScoreLabel(score: String) -> String {
+            "Score: \(score)"
+        }
     }
     
     var viewModel = ViewModel()
@@ -41,127 +72,172 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         scoreLabel = UILabel()
-        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        scoreLabel.textAlignment = .right
-        scoreLabel.text = Constants.introScoreLabel
+        let scoreConfig = LabelConfig(
+            textAlignment: .right,
+            font: UIFont.systemFont(ofSize: Constants.twentyFour),
+            fontSize: Constants.twentyFour,
+            label: scoreLabel,
+            text: Constants.scoreText,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: .darkGray)
+                
+        viewModel.configure(label: scoreLabel, config: scoreConfig)
         view.addSubview(scoreLabel)
         
         cluesLabel = UILabel()
-        cluesLabel.translatesAutoresizingMaskIntoConstraints = false
-        cluesLabel.font = UIFont.systemFont(ofSize: 24)
-        cluesLabel.text = "CLUES"
-        cluesLabel.numberOfLines = 0
+        let cluesConfig = LabelConfig(
+            textAlignment: .left,
+            font: UIFont.systemFont(ofSize: Constants.twentyFour),
+            fontSize: Constants.twentyFour,
+            label: cluesLabel,
+            text: Constants.clues,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: .systemRed)
+                                              
+        viewModel.configure(label: cluesLabel, config: cluesConfig)
         view.addSubview(cluesLabel)
-        
-        cluesLabel.backgroundColor = .red
-        cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        
+                
         answersLabel = UILabel()
-        answersLabel.translatesAutoresizingMaskIntoConstraints = false
-        answersLabel.font = UIFont.systemFont(ofSize: 24)
-        answersLabel.text = "ANSWERS"
-        answersLabel.numberOfLines = 0
-        answersLabel.textAlignment = .right
+        let answerConfig = LabelConfig(
+            textAlignment: .right,
+            font: UIFont.systemFont(ofSize: Constants.fortyFour),
+            fontSize: Constants.twentyFour,
+            label: answersLabel,
+            text: Constants.answers,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: .systemBlue)
+        
+        viewModel.configure(label: answersLabel, config: answerConfig)
         view.addSubview(answersLabel)
-        
-        answersLabel.backgroundColor = .blue
-        answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        
+                
         currentAnswer = UITextField()
+        let currentAnswerConfig = TextFieldConfig(
+            textAlignment: .left,
+            font: UIFont.systemFont(ofSize: Constants.fortyFour),
+            fontSize: Constants.fortyFour,
+            placeholder: Constants.currentAnswerPlaceholder,
+            isUserInteractionEnabled: true)
+        format(currentAnswer: currentAnswer)
+        view.addSubview(currentAnswer)
+        
+        let submit = UIButton(type: .system)
+        makeControl(button: submit, title: Constants.submit, action: #selector(submitTapped))
+        view.addSubview(submit)
+        
+        let clear = UIButton(type: .system)
+        makeControl(button: clear, title: Constants.clear, action: #selector(clearTapped))
+        view.addSubview(clear)
+        
+        let buttonsView = UIView()
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsView.backgroundColor = .systemGreen
+        
+        view.addSubview(buttonsView)
+        
+        activateConstraints(
+            scoreLabel: scoreLabel,
+            cluesLabel: cluesLabel,
+            answersLabel: answersLabel,
+            currentAnswer: currentAnswer,
+            submit: submit,
+            clear: clear,
+            buttonsView: buttonsView)
+        
+        makeAnswerGridButtons(buttonsView: buttonsView)
+    }
+    
+    func format(currentAnswer: UITextField) {
         currentAnswer.translatesAutoresizingMaskIntoConstraints = false
         currentAnswer.placeholder = "Tap letters to guess"
         currentAnswer.textAlignment = .center
         currentAnswer.font = UIFont.systemFont(ofSize: 44)
         currentAnswer.isUserInteractionEnabled = false
-        view.addSubview(currentAnswer)
-        
-        let submit = UIButton(type: .system)
-        submit.translatesAutoresizingMaskIntoConstraints = false
-        submit.setTitle("SUBMIT", for: .normal)
-        view.addSubview(submit)
-        
-        submit.addTarget(
+    }
+    
+    func makeControl(button: UIButton, title: String, action: Selector) {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(title, for: .normal)
+        button.addTarget(
             self,
-            action: #selector(submitTapped),
+            action: action,
             for: .touchUpInside)
-        
-        let clear = UIButton(type: .system)
-        clear.translatesAutoresizingMaskIntoConstraints = false
-        clear.setTitle("CLEAR", for: .normal)
-        view.addSubview(clear)
-        
-        clear.addTarget(
-            self,
-            action: #selector(clearTapped), for: .touchUpInside)
-        
-        let buttonsView = UIView()
-        buttonsView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(buttonsView)
-        
-        buttonsView.backgroundColor = .systemGreen
-        
-        NSLayoutConstraint.activate([
-            scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
-            
-            // Pin the top of the clues label to the bottom of the score label
-            cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
-            
-            // Pin the leading edge of the clues label to the leading edge of our layout margins, adding 100 for some space
-            cluesLabel.leadingAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.leadingAnchor,
-                constant: 100),
-            
-            // Make the clues label 60% of the width of our layout margins, minus 100
-            cluesLabel.widthAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.widthAnchor,
-                multiplier: 0.6,
-                constant: -100),
-            
-            // Also, pin the top of the answers label to the bottom of the score label
-            answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
-            
-            // Make the answers label stick to the trailing edge of our layour margins, minus 100
-            answersLabel.trailingAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.trailingAnchor,
-                constant: -100),
-            
-            // Make the answers label take up 40% of the available space, minus 100
-            answersLabel.widthAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.widthAnchor,
-                multiplier: 0.4,
-                constant: -100),
-            
-            // Make the answers label match the height of the clues label
-            answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
-            
-            // current answer textField
-            currentAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            currentAnswer.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-            currentAnswer.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 20),
-            
-            // submit button
-            submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
-            submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
-            submit.heightAnchor.constraint(equalToConstant: 44),
-            
-            // clear button
-            clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
-            clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
-            clear.heightAnchor.constraint(equalToConstant: 44),
-            
-            // buttonsView constraints
-            buttonsView.widthAnchor.constraint(equalToConstant: 750),
-            buttonsView.heightAnchor.constraint(equalToConstant: 320),
-            buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
-            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
-        ])
-        
+    }
+    
+    func activateConstraints(
+        scoreLabel: UILabel,
+        cluesLabel: UILabel,
+        answersLabel: UILabel,
+        currentAnswer: UITextField,
+        submit: UIButton,
+        clear: UIButton,
+        buttonsView: UIView) {
+            NSLayoutConstraint.activate([
+                scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+                scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 0),
+                
+                // Pin the top of the clues label to the bottom of the score label
+                cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
+                
+                // Pin the leading edge of the clues label to the leading edge of our layout margins, adding 100 for some space
+                cluesLabel.leadingAnchor.constraint(
+                    equalTo: view.layoutMarginsGuide.leadingAnchor,
+                    constant: 100),
+                
+                // Make the clues label 60% of the width of our layout margins, minus 100
+                cluesLabel.widthAnchor.constraint(
+                    equalTo: view.layoutMarginsGuide.widthAnchor,
+                    multiplier: 0.6,
+                    constant: -100),
+                
+                // Also, pin the top of the answers label to the bottom of the score label
+                answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
+                
+                // Make the answers label stick to the trailing edge of our layour margins, minus 100
+                answersLabel.trailingAnchor.constraint(
+                    equalTo: view.layoutMarginsGuide.trailingAnchor,
+                    constant: -100),
+                
+                // Make the answers label take up 40% of the available space, minus 100
+                answersLabel.widthAnchor.constraint(
+                    equalTo: view.layoutMarginsGuide.widthAnchor,
+                    multiplier: 0.4,
+                    constant: -100),
+                
+                // Make the answers label match the height of the clues label
+                answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
+                
+                // current answer textField
+                currentAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                currentAnswer.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+                currentAnswer.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 20),
+                
+                // submit button
+                submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
+                submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
+                submit.heightAnchor.constraint(equalToConstant: 44),
+                
+                // clear button
+                clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
+                clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
+                clear.heightAnchor.constraint(equalToConstant: 44),
+                
+                // buttonsView constraints
+                buttonsView.widthAnchor.constraint(equalToConstant: 750),
+                buttonsView.heightAnchor.constraint(equalToConstant: 320),
+                buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
+                buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
+            ])
+    }
+    
+    func makeAnswerGridButtons(buttonsView: UIView) {
         // button grid setup
         let width = 150
         let height = 80
-        
+
         // create 20 buttons as a 4 x 5 grid
         for row in 0 ..< 4 {
             for column in 0 ..< 5 {
