@@ -16,5 +16,4 @@ protocol Config {
     var translatesAutoresizeMaskIntoConstraints: Bool { get }
     var textAlignment: NSTextAlignment { get }
     var font: UIFont { get }
-    var fontSize: CGFloat { get }
 }

@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         static let currentAnswerPlaceholder = "Tap letters to guess"
         static let multiplier = 0.6
         static let pointFiveMultiplier = 0.5
+        static let pointFourMultiplier = 0.4
         
         static let twentyFour = CGFloat(24)
         static let fortyFour = CGFloat(44)
@@ -75,7 +76,6 @@ class ViewController: UIViewController {
         let scoreConfig = LabelConfig(
             textAlignment: .right,
             font: UIFont.systemFont(ofSize: Constants.twentyFour),
-            fontSize: Constants.twentyFour,
             label: scoreLabel,
             text: Constants.scoreText,
             contentHuggingPriority: UILayoutPriority(1),
@@ -89,39 +89,44 @@ class ViewController: UIViewController {
         let cluesConfig = LabelConfig(
             textAlignment: .left,
             font: UIFont.systemFont(ofSize: Constants.twentyFour),
-            fontSize: Constants.twentyFour,
             label: cluesLabel,
             text: Constants.clues,
             contentHuggingPriority: UILayoutPriority(1),
             axis: .vertical,
             backgroundColor: .systemRed)
-                                              
-        viewModel.configure(label: cluesLabel, config: cluesConfig)
         view.addSubview(cluesLabel)
                 
         answersLabel = UILabel()
         let answerConfig = LabelConfig(
             textAlignment: .right,
             font: UIFont.systemFont(ofSize: Constants.fortyFour),
-            fontSize: Constants.twentyFour,
             label: answersLabel,
             text: Constants.answers,
             contentHuggingPriority: UILayoutPriority(1),
             axis: .vertical,
             backgroundColor: .systemBlue)
-        
-        viewModel.configure(label: answersLabel, config: answerConfig)
         view.addSubview(answersLabel)
                 
         currentAnswer = UITextField()
         let currentAnswerConfig = TextFieldConfig(
-            textAlignment: .left,
+            textAlignment: .center,
             font: UIFont.systemFont(ofSize: Constants.fortyFour),
-            fontSize: Constants.fortyFour,
             placeholder: Constants.currentAnswerPlaceholder,
-            isUserInteractionEnabled: true)
-        format(currentAnswer: currentAnswer)
+            isUserInteractionEnabled: false)
+        
+        viewModel.configure(textField: currentAnswer, config: currentAnswerConfig)
         view.addSubview(currentAnswer)
+        
+        let labelTuples: [(UILabel, LabelConfig)] = [
+            (scoreLabel, scoreConfig),
+            (cluesLabel, cluesConfig),
+            (answersLabel, answerConfig)]
+        
+        for tuple in labelTuples {
+            let label = tuple.0
+            let config = tuple.1
+            viewModel.configure(label: label, config: config)
+            view.addSubview(label) }
         
         let submit = UIButton(type: .system)
         makeControl(button: submit, title: Constants.submit, action: #selector(submitTapped))
@@ -147,14 +152,6 @@ class ViewController: UIViewController {
             buttonsView: buttonsView)
         
         makeAnswerGridButtons(buttonsView: buttonsView)
-    }
-    
-    func format(currentAnswer: UITextField) {
-        currentAnswer.translatesAutoresizingMaskIntoConstraints = false
-        currentAnswer.placeholder = "Tap letters to guess"
-        currentAnswer.textAlignment = .center
-        currentAnswer.font = UIFont.systemFont(ofSize: 44)
-        currentAnswer.isUserInteractionEnabled = false
     }
     
     func makeControl(button: UIButton, title: String, action: Selector) {
@@ -184,13 +181,13 @@ class ViewController: UIViewController {
                 // Pin the leading edge of the clues label to the leading edge of our layout margins, adding 100 for some space
                 cluesLabel.leadingAnchor.constraint(
                     equalTo: view.layoutMarginsGuide.leadingAnchor,
-                    constant: 100),
+                    constant: Constants.plusHundred),
                 
                 // Make the clues label 60% of the width of our layout margins, minus 100
                 cluesLabel.widthAnchor.constraint(
                     equalTo: view.layoutMarginsGuide.widthAnchor,
-                    multiplier: 0.6,
-                    constant: -100),
+                    multiplier: Constants.multiplier,
+                    constant: Constants.minusHundred),
                 
                 // Also, pin the top of the answers label to the bottom of the score label
                 answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
@@ -198,38 +195,38 @@ class ViewController: UIViewController {
                 // Make the answers label stick to the trailing edge of our layour margins, minus 100
                 answersLabel.trailingAnchor.constraint(
                     equalTo: view.layoutMarginsGuide.trailingAnchor,
-                    constant: -100),
+                    constant: Constants.minusHundred),
                 
                 // Make the answers label take up 40% of the available space, minus 100
                 answersLabel.widthAnchor.constraint(
                     equalTo: view.layoutMarginsGuide.widthAnchor,
-                    multiplier: 0.4,
-                    constant: -100),
+                    multiplier: Constants.pointFourMultiplier,
+                    constant: Constants.minusHundred),
                 
                 // Make the answers label match the height of the clues label
                 answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
                 
                 // current answer textField
                 currentAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                currentAnswer.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-                currentAnswer.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: 20),
+                currentAnswer.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.pointFiveMultiplier),
+                currentAnswer.topAnchor.constraint(equalTo: cluesLabel.bottomAnchor, constant: Constants.buttonsViewTop),
                 
                 // submit button
                 submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
-                submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
-                submit.heightAnchor.constraint(equalToConstant: 44),
+                submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.minusHundred),
+                submit.heightAnchor.constraint(equalToConstant: Constants.fortyFour),
                 
                 // clear button
-                clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
+                clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.plusHundred),
                 clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
-                clear.heightAnchor.constraint(equalToConstant: 44),
+                clear.heightAnchor.constraint(equalToConstant: Constants.fortyFour),
                 
                 // buttonsView constraints
-                buttonsView.widthAnchor.constraint(equalToConstant: 750),
-                buttonsView.heightAnchor.constraint(equalToConstant: 320),
+                buttonsView.widthAnchor.constraint(equalToConstant: Constants.buttonsViewWidth),
+                buttonsView.heightAnchor.constraint(equalToConstant: Constants.buttonsViewHeight),
                 buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
-                buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
+                buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: Constants.buttonsViewTop),
+                buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: Constants.buttonsViewBottom),
             ])
     }
     
@@ -333,13 +330,6 @@ class ViewController: UIViewController {
             }
         }
         
-        // Now configure the buttons and labels
-        
-//        cluesText = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-//        answersText = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-//        letterBits.shuffle()
-//        triggerLoadLevelSubject.send(true)
-        
         cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
         answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
         letterBits.shuffle()
@@ -361,10 +351,6 @@ class ViewController: UIViewController {
         loadLevel()
         for button in letterButtons {
             button.isHidden = false
-
-
-
-
         }
     }
 }

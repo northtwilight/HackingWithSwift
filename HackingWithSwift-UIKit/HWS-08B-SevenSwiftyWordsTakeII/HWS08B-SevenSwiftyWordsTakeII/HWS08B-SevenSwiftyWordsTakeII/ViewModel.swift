@@ -11,7 +11,7 @@ import UIKit
 class ViewModel: NSObject {
     func configure(label: UILabel, config: LabelConfig) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: config.fontSize)
+        label.font = config.font
         label.text = config.text
         label.textAlignment = config.textAlignment
         label.numberOfLines = 0
@@ -23,7 +23,7 @@ class ViewModel: NSObject {
         textField.translatesAutoresizingMaskIntoConstraints = config.translatesAutoresizeMaskIntoConstraints
         textField.placeholder = config.placeholder
         textField.textAlignment = config.textAlignment
-        textField.font = UIFont.systemFont(ofSize: config.fontSize)
+        textField.font = config.font
         textField.isUserInteractionEnabled = config.isUserInteractionEnabled
     }
 }

@@ -12,7 +12,6 @@ struct TextFieldConfig: Config {
     let translatesAutoresizeMaskIntoConstraints: Bool = false
     let textAlignment: NSTextAlignment
     let font: UIFont
-    let fontSize: CGFloat
     let placeholder: String
     let isUserInteractionEnabled: Bool
 }

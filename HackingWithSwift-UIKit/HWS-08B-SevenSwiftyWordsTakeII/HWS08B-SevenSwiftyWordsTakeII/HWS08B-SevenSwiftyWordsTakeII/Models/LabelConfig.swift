@@ -13,7 +13,6 @@ struct LabelConfig: Config {
     let translatesAutoresizeMaskIntoConstraints: Bool = false
     let textAlignment: NSTextAlignment
     let font: UIFont
-    let fontSize: CGFloat
     let label: UILabel
     let text: String
     let contentHuggingPriority: UILayoutPriority
