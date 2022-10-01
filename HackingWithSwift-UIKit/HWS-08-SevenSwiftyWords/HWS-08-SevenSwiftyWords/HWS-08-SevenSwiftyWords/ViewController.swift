@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
+    @IBOutlet var cluesLabel: UILabel!
+    @IBOutlet var answersLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var currentAnswer: UITextField!
+    
     private struct Constants {
         static let scoreText = "Score: 0"
         
@@ -43,47 +49,98 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var cluesLabel: UILabel!
-    @IBOutlet weak var answersLabel: UILabel!
-    @IBOutlet weak var currentAnswer: UITextField!
-    @IBOutlet weak var scoreLabel: UILabel!
     
     var letterButtons = [UIButton]()
     var activatedButtons = [UIButton]()
-    var solutions = [String]()
+    var cancellables = Set<AnyCancellable>()
     
     lazy var score = 0 {
         didSet {
             scoreLabel.text = Constants.configureScoreLabel(score: String(score) )
         }
     }
-    var level = 1
     
     let buttonsView = UIView()
     
     let submit = UIButton(type: .system)
     let clear = UIButton(type: .system)
+    
+    var viewModel = ViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeToLoadLevelTrigger()
+    }
+    
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .white
+        loadLetterButtons()
+        // guard let currentAnswer = self.currentAnswer else { print("This is really fucked"); return }
         formatAndConfigure()
+    }
+
+    
+    func loadLetterButtons() {
+        for subview in view.subviews where subview.tag == 1001 {
+            if let bttn = subview as? UIButton {
+                letterButtons.append(bttn)
+                bttn.addTarget(
+                    self,
+                    action: #selector(letterTapped),
+                    for: .touchUpInside)
+            }
+        }
     }
     
     func formatAndConfigure() {
-        createSubmitAndClear()
-        formatIndividualButtons()
-        createButtonsView()
+        viewModel.loadLevel()
+        
         formatLabels()
         configureTextfield()
         formatConstraints()
-        loadLevel()
+        
+        createButtonsView()
+        
+        createSubmitAndClear(
+            button: submit,
+            title: Constants.submit,
+            action: #selector(submitTapped))
+        
+        createSubmitAndClear(
+            button: clear,
+            title: Constants.clear,
+            action: #selector(clearTapped))
+        
+        formatIndividualButtons()
+        
+        
+        
+        
+        
+        viewModel.loadLevel()
+    }
+    
+    @IBAction func resignTextField(_ sender: Any) {
+        currentAnswer.resignFirstResponder()
+    }
+    
+    func subscribeToLoadLevelTrigger() {
+        viewModel.triggerLoadLevelSubject.sink { [weak self] bool in
+            guard let self = self else { return }
+            if self.viewModel.letterBits.count == self.letterButtons.count {
+                for item in 0 ..< self.letterButtons.count {
+                    self.letterButtons[item].setTitle(self.viewModel.letterBits[item], for: .normal)
+                }
+            }
+        }.store(in: &cancellables)
     }
     
     func levelUp(action: UIAlertAction) {
         DispatchQueue.main.async {
-            self.level += 1
-            self.solutions.removeAll(keepingCapacity: true)
-            self.loadLevel()
+            self.viewModel.level += 1
+            self.viewModel.solutions.removeAll(keepingCapacity: true)
+            self.viewModel.loadLevel()
             for button in self.letterButtons {
                 button.alpha = 0
                 let oneSecond = CGFloat(1)
@@ -108,9 +165,9 @@ class ViewController: UIViewController {
         activatedButtons.append(sender)
     }
     
-    @objc func submitTapped(_ sender: UIButton) {
+    @IBAction func submitTapped(_ sender: UIButton) {
         guard let answerText = currentAnswer.text else { return }
-        if let solutionPosition = solutions.firstIndex(of: answerText) {
+        if let solutionPosition = viewModel.solutions.firstIndex(of: answerText) {
             activatedButtons.removeAll()
             var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
             splitAnswers?[solutionPosition] = answerText
@@ -129,80 +186,63 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func clearTapped(_ sender: UIButton) {
+    @IBAction func clearTapped(_ sender: UIButton) {
         currentAnswer.text = ""
         for button in activatedButtons {
             button.isHidden = false
         }
         activatedButtons.removeAll()
     }
-
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = .white
-    }
     
-    func createSubmitAndClear() {
-        submit.translatesAutoresizingMaskIntoConstraints = false
-        submit.setTitle(Constants.submit, for: .normal)
-        view.addSubview(submit)
-        submit.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
-        
-        clear.translatesAutoresizingMaskIntoConstraints = false
-        clear.setTitle(Constants.clear, for: .normal)
-        view.addSubview(clear)
-        clear.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
+    func createSubmitAndClear(button: UIButton, title: String, action: Selector) {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(title, for: .normal)
+        // view.addSubview(button)
+        button.addTarget(self, action: action, for: .touchUpInside)
     }
     
     func createButtonsView() {
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(buttonsView)
+        // view.addSubview(buttonsView)
     }
     
-    func configureIndividualLabels(
-        label: UILabel,
-        textAlignment: NSTextAlignment = .right,
-        fontSize: CGFloat,
-        text: String
-    ) {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: fontSize)
-        label.text = text
-        label.numberOfLines = 0
-        label.textAlignment = textAlignment
-        view.addSubview(label)
-    }
+
     
     func configureTextfield() {
-        currentAnswer.delegate = self
+        guard self.currentAnswer != nil else { print("This is well and truly blown in \(#function)!"); return }
+        // guard let currentAnswer = self.currentAnswer else { print("This is ,mkklkl"); return // }
+//        if self.currentAnswer == nil {
+//            self.currentAnswer = UITextField()
+//        }
         currentAnswer.translatesAutoresizingMaskIntoConstraints = false
         currentAnswer.placeholder = Constants.currentAnswerPlaceholder
         currentAnswer.textAlignment = .center
         currentAnswer.font = UIFont.systemFont(ofSize: Constants.fortyFour)
         currentAnswer.isUserInteractionEnabled = false
-        view.addSubview(currentAnswer)
+        // view.addSubview(currentAnswer)
     }
     
-    func formatScoreConstraints() {
+    func formatConstraints() {
+        guard let scoreLabel = self.scoreLabel,
+              let cluesLabel = self.cluesLabel,
+              let answersLabel = self.answersLabel else {
+            print("\(#file) & \(#function) - failed to setup labels")
+            return
+        }
         NSLayoutConstraint.activate([
+            // Score constraints
             scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-        ])
-    }
-    
-    func formatCluesConstraints() {
-        NSLayoutConstraint.activate([
+            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            
+            // Clues constraints
             cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: Constants.plusHundred),
             cluesLabel.widthAnchor.constraint(
                 equalTo: view.layoutMarginsGuide.widthAnchor,
                 multiplier: Constants.multiplier,
-                constant: Constants.minusHundred)
-        ])
-    }
-    
-    func formatAnswersConstraints() {
-        NSLayoutConstraint.activate([
+                constant: Constants.minusHundred),
+            
+            // Answers constraints
             answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             answersLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: Constants.minusHundred),
             answersLabel.widthAnchor.constraint(
@@ -210,79 +250,75 @@ class ViewController: UIViewController {
                 multiplier: Constants.multiplier,
                 constant: Constants.minusHundred),
             answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
-        ])
-    }
-    
-    func formatCurrentAnswerConstraints() {
-        NSLayoutConstraint.activate([
+            
+            // Current answer constraints
             currentAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             currentAnswer.widthAnchor.constraint(
                 equalTo: view.widthAnchor,
                 multiplier: Constants.pointFiveMultiplier),
             currentAnswer.topAnchor.constraint(
                 equalTo: cluesLabel.bottomAnchor,
-                constant: 20)
-        ])
-    }
-    
-    func formatButtonsViewConstraints() {
-        NSLayoutConstraint.activate([
+                constant: 20),
+            
+            // Submit button constraints
+            submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
+            submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.submitCenterX),
+            submit.heightAnchor.constraint(equalToConstant: Constants.submitHeight),
+
+            // Clear button constraints
+            clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.clearCenterX),
+            clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
+            clear.heightAnchor.constraint(equalToConstant: Constants.clearHeight),
+            
+            // Buttons view constraints
             buttonsView.widthAnchor.constraint(equalToConstant: Constants.buttonsViewWidth),
             buttonsView.heightAnchor.constraint(equalToConstant: Constants.buttonsViewHeight),
             buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: Constants.buttonsViewTop),
             buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: Constants.buttonsViewBottom)
         ])
-        
-    }
-    
-    func formatSubmitConstraints() {
-        NSLayoutConstraint.activate([
-            submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
-            submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.submitCenterX),
-            submit.heightAnchor.constraint(equalToConstant: Constants.submitHeight)
-        ])
-    }
-    
-    func formatClearConstraints() {
-        NSLayoutConstraint.activate([
-            clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: Constants.clearCenterX),
-            clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
-            clear.heightAnchor.constraint(equalToConstant: Constants.clearHeight)
-        ])
-    }
-    
-    func formatConstraints() {
-        formatScoreConstraints()
-        formatCluesConstraints()
-        formatAnswersConstraints()
-        formatCurrentAnswerConstraints()
-        formatSubmitConstraints()
-        formatClearConstraints()
-        formatButtonsViewConstraints()
     }
     
     func formatLabels() {
         let scoreLabel = UILabel()
-        configureIndividualLabels(
+        let scoreConfig = LabelConfig(
             label: scoreLabel,
             fontSize: Constants.twentyFour,
-            text: Constants.scoreText)
+            text: Constants.scoreText,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: UIColor.red)
+        
         let cluesLabel = UILabel()
-        configureIndividualLabels(
+        let cluesConfig = LabelConfig(
             label: cluesLabel,
             fontSize: Constants.twentyFour,
-            text: Constants.clues)
+            text: Constants.clues,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: UIColor.blue)
+        
         let answersLabel = UILabel()
-        configureIndividualLabels(
+        let answersConfig = LabelConfig(
             label: answersLabel,
             fontSize: Constants.twentyFour,
-            text: Constants.answers)
+            text: Constants.answers,
+            contentHuggingPriority: UILayoutPriority(1),
+            axis: .vertical,
+            backgroundColor: UIColor.gray)
         
-        cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+        let labels = [
+            (scoreLabel, scoreConfig),
+            (cluesLabel, cluesConfig),
+            (answersLabel, answersConfig)]
         
-        cluesLabel.backgroundColor = .red
-        answersLabel.backgroundColor = .blue
+        for (label, config) in labels {
+            viewModel.configureIndividualLabels(
+                label: label,
+                fontSize: Constants.twentyFour,
+                text: config.text)
+            // view.addSubview(label)
+        }
+        
         buttonsView.backgroundColor = .green
     }
     
@@ -302,53 +338,26 @@ class ViewController: UIViewController {
                     y: CGFloat(row) * height,
                     width: width,
                     height: height)
+                letterButton.backgroundColor = UIColor.systemOrange
                 buttonsView.addSubview(letterButton)
                 letterButtons.append(letterButton)
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
             }
         }
     }
-    
-    func levelNumber(level: Int) -> String {
-        "level\(level)"
-    }
-    
-    func loadLevel() {
-        var clueString = ""
-        var solutionString = ""
-        var letterBits = [String]()
-        if let levelFileURL = Bundle.main.url(forResource: levelNumber(level: level), withExtension: "txt") {
-            if let levelContents = try? String(contentsOf: levelFileURL) {
-                var lines = levelContents.components(separatedBy: "\n")
-                lines.shuffle()
-                
-                for (index, line) in lines.enumerated() {
-                    let parts = line.components(separatedBy: ": ")
-                    let answer = parts[0]
-                    let clue = parts[1]
-                    
-                    clueString += "\(index + 1). \(clue)\n"
-                    
-                    let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                    solutionString += "\(solutionWord.count) letters\n"
-                    solutions.append(solutionWord)
-                    
-                    let bits = answer.components(separatedBy: "|")
-                    letterBits += bits
-                }
-            }
-        }
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-        letterBits.shuffle()
-        if letterBits.count == letterButtons.count {
-            for item in 0 ..< letterButtons.count {
-                letterButtons[item].setTitle(letterBits[item], for: .normal)
-            }
-        }
-    }
 }
 
 extension ViewController: UITextFieldDelegate {
+    func delegationSetting() {
+        currentAnswer.delegate = self
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        currentAnswer.resignFirstResponder()
+        return true
+    }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 }

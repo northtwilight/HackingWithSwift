@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7712975C28E7CBE20006AAF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712975B28E7CBE20006AAF7 /* AppDelegate.swift */; };
+		7712975E28E7CBE20006AAF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712975D28E7CBE20006AAF7 /* SceneDelegate.swift */; };
+		7712976028E7CBE20006AAF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712975F28E7CBE20006AAF7 /* ViewController.swift */; };
+		7712976328E7CBE20006AAF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7712976128E7CBE20006AAF7 /* Main.storyboard */; };
+		7712976628E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7712976428E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld */; };
+		7712976828E7CBE30006AAF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7712976728E7CBE30006AAF7 /* Assets.xcassets */; };
+		7712976B28E7CBE30006AAF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7712976928E7CBE30006AAF7 /* LaunchScreen.storyboard */; };
+		7712977628E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712977528E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIITests.swift */; };
+		7712978028E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712977F28E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITests.swift */; };
+		7712978228E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712978128E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift */; };
+		7712978F28E7CD9B0006AAF7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712978E28E7CD9B0006AAF7 /* ViewModel.swift */; };
+		7712979328E7DE890006AAF7 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7712979128E7DE890006AAF7 /* level2.txt */; };
+		7712979428E7DE890006AAF7 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7712979228E7DE890006AAF7 /* level1.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7712977228E7CBE30006AAF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7712975028E7CBE20006AAF7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7712975728E7CBE20006AAF7;
+			remoteInfo = "HWS08B-SevenSwiftyWordsTakeII";
+		};
+		7712977C28E7CBE30006AAF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7712975028E7CBE20006AAF7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7712975728E7CBE20006AAF7;
+			remoteInfo = "HWS08B-SevenSwiftyWordsTakeII";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7712975828E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HWS08B-SevenSwiftyWordsTakeII.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7712975B28E7CBE20006AAF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7712975D28E7CBE20006AAF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7712975F28E7CBE20006AAF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7712976228E7CBE20006AAF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7712976528E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWS08B_SevenSwiftyWordsTakeII.xcdatamodel; sourceTree = "<group>"; };
+		7712976728E7CBE30006AAF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7712976A28E7CBE30006AAF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7712976C28E7CBE30006AAF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7712977128E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWS08B-SevenSwiftyWordsTakeIITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7712977528E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS08B_SevenSwiftyWordsTakeIITests.swift; sourceTree = "<group>"; };
+		7712977B28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HWS08B-SevenSwiftyWordsTakeIIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7712977F28E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS08B_SevenSwiftyWordsTakeIIUITests.swift; sourceTree = "<group>"; };
+		7712978128E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7712978E28E7CD9B0006AAF7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		7712979128E7DE890006AAF7 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		7712979228E7DE890006AAF7 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7712975528E7CBE20006AAF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712976E28E7CBE30006AAF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712977828E7CBE30006AAF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7712974F28E7CBE20006AAF7 = {
+			isa = PBXGroup;
+			children = (
+				7712975A28E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */,
+				7712977428E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests */,
+				7712977E28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests */,
+				7712975928E7CBE20006AAF7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7712975928E7CBE20006AAF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7712975828E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII.app */,
+				7712977128E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests.xctest */,
+				7712977B28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7712975A28E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */ = {
+			isa = PBXGroup;
+			children = (
+				7712979028E7DE890006AAF7 /* TextFiles */,
+				7712975B28E7CBE20006AAF7 /* AppDelegate.swift */,
+				7712975D28E7CBE20006AAF7 /* SceneDelegate.swift */,
+				7712975F28E7CBE20006AAF7 /* ViewController.swift */,
+				7712978E28E7CD9B0006AAF7 /* ViewModel.swift */,
+				7712976128E7CBE20006AAF7 /* Main.storyboard */,
+				7712976728E7CBE30006AAF7 /* Assets.xcassets */,
+				7712976928E7CBE30006AAF7 /* LaunchScreen.storyboard */,
+				7712976C28E7CBE30006AAF7 /* Info.plist */,
+				7712976428E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld */,
+			);
+			path = "HWS08B-SevenSwiftyWordsTakeII";
+			sourceTree = "<group>";
+		};
+		7712977428E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests */ = {
+			isa = PBXGroup;
+			children = (
+				7712977528E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIITests.swift */,
+			);
+			path = "HWS08B-SevenSwiftyWordsTakeIITests";
+			sourceTree = "<group>";
+		};
+		7712977E28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7712977F28E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITests.swift */,
+				7712978128E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift */,
+			);
+			path = "HWS08B-SevenSwiftyWordsTakeIIUITests";
+			sourceTree = "<group>";
+		};
+		7712979028E7DE890006AAF7 /* TextFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7712979228E7DE890006AAF7 /* level1.txt */,
+				7712979128E7DE890006AAF7 /* level2.txt */,
+			);
+			path = TextFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7712975728E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7712978528E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeII" */;
+			buildPhases = (
+				7712975428E7CBE20006AAF7 /* Sources */,
+				7712975528E7CBE20006AAF7 /* Frameworks */,
+				7712975628E7CBE20006AAF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HWS08B-SevenSwiftyWordsTakeII";
+			productName = "HWS08B-SevenSwiftyWordsTakeII";
+			productReference = 7712975828E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7712977028E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7712978828E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeIITests" */;
+			buildPhases = (
+				7712976D28E7CBE30006AAF7 /* Sources */,
+				7712976E28E7CBE30006AAF7 /* Frameworks */,
+				7712976F28E7CBE30006AAF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7712977328E7CBE30006AAF7 /* PBXTargetDependency */,
+			);
+			name = "HWS08B-SevenSwiftyWordsTakeIITests";
+			productName = "HWS08B-SevenSwiftyWordsTakeIITests";
+			productReference = 7712977128E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7712977A28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7712978B28E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeIIUITests" */;
+			buildPhases = (
+				7712977728E7CBE30006AAF7 /* Sources */,
+				7712977828E7CBE30006AAF7 /* Frameworks */,
+				7712977928E7CBE30006AAF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7712977D28E7CBE30006AAF7 /* PBXTargetDependency */,
+			);
+			name = "HWS08B-SevenSwiftyWordsTakeIIUITests";
+			productName = "HWS08B-SevenSwiftyWordsTakeIIUITests";
+			productReference = 7712977B28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7712975028E7CBE20006AAF7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					7712975728E7CBE20006AAF7 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					7712977028E7CBE30006AAF7 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 7712975728E7CBE20006AAF7;
+					};
+					7712977A28E7CBE30006AAF7 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 7712975728E7CBE20006AAF7;
+					};
+				};
+			};
+			buildConfigurationList = 7712975328E7CBE20006AAF7 /* Build configuration list for PBXProject "HWS08B-SevenSwiftyWordsTakeII" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7712974F28E7CBE20006AAF7;
+			productRefGroup = 7712975928E7CBE20006AAF7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7712975728E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */,
+				7712977028E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIITests */,
+				7712977A28E7CBE30006AAF7 /* HWS08B-SevenSwiftyWordsTakeIIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7712975628E7CBE20006AAF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7712979428E7DE890006AAF7 /* level1.txt in Resources */,
+				7712976B28E7CBE30006AAF7 /* LaunchScreen.storyboard in Resources */,
+				7712976828E7CBE30006AAF7 /* Assets.xcassets in Resources */,
+				7712979328E7DE890006AAF7 /* level2.txt in Resources */,
+				7712976328E7CBE20006AAF7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712976F28E7CBE30006AAF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712977928E7CBE30006AAF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7712975428E7CBE20006AAF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7712978F28E7CD9B0006AAF7 /* ViewModel.swift in Sources */,
+				7712976028E7CBE20006AAF7 /* ViewController.swift in Sources */,
+				7712975C28E7CBE20006AAF7 /* AppDelegate.swift in Sources */,
+				7712976628E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld in Sources */,
+				7712975E28E7CBE20006AAF7 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712976D28E7CBE30006AAF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7712977628E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7712977728E7CBE30006AAF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7712978028E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITests.swift in Sources */,
+				7712978228E7CBE30006AAF7 /* HWS08B_SevenSwiftyWordsTakeIIUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7712977328E7CBE30006AAF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7712975728E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */;
+			targetProxy = 7712977228E7CBE30006AAF7 /* PBXContainerItemProxy */;
+		};
+		7712977D28E7CBE30006AAF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7712975728E7CBE20006AAF7 /* HWS08B-SevenSwiftyWordsTakeII */;
+			targetProxy = 7712977C28E7CBE30006AAF7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7712976128E7CBE20006AAF7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7712976228E7CBE20006AAF7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7712976928E7CBE30006AAF7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7712976A28E7CBE30006AAF7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7712978328E7CBE30006AAF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7712978428E7CBE30006AAF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7712978628E7CBE30006AAF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HWS08B-SevenSwiftyWordsTakeII/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeII";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7712978728E7CBE30006AAF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "HWS08B-SevenSwiftyWordsTakeII/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeII";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		7712978928E7CBE30006AAF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeIITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWS08B-SevenSwiftyWordsTakeII.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HWS08B-SevenSwiftyWordsTakeII";
+			};
+			name = Debug;
+		};
+		7712978A28E7CBE30006AAF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeIITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HWS08B-SevenSwiftyWordsTakeII.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HWS08B-SevenSwiftyWordsTakeII";
+			};
+			name = Release;
+		};
+		7712978C28E7CBE30006AAF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeIIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "HWS08B-SevenSwiftyWordsTakeII";
+			};
+			name = Debug;
+		};
+		7712978D28E7CBE30006AAF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDMN82H87M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.shinglehang-software.HWS08B-SevenSwiftyWordsTakeIIUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "HWS08B-SevenSwiftyWordsTakeII";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7712975328E7CBE20006AAF7 /* Build configuration list for PBXProject "HWS08B-SevenSwiftyWordsTakeII" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7712978328E7CBE30006AAF7 /* Debug */,
+				7712978428E7CBE30006AAF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7712978528E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeII" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7712978628E7CBE30006AAF7 /* Debug */,
+				7712978728E7CBE30006AAF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7712978828E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeIITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7712978928E7CBE30006AAF7 /* Debug */,
+				7712978A28E7CBE30006AAF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7712978B28E7CBE30006AAF7 /* Build configuration list for PBXNativeTarget "HWS08B-SevenSwiftyWordsTakeIIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7712978C28E7CBE30006AAF7 /* Debug */,
+				7712978D28E7CBE30006AAF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7712976428E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7712976528E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodel */,
+			);
+			currentVersion = 7712976528E7CBE20006AAF7 /* HWS08B_SevenSwiftyWordsTakeII.xcdatamodel */;
+			path = HWS08B_SevenSwiftyWordsTakeII.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7712975028E7CBE20006AAF7 /* Project object */;
+}

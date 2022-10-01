@@ -47,22 +47,28 @@ class ViewController: UITableViewController {
         
         navigationItem.leftBarButtonItems = [filter, reset]
         
-        // URL to load
-        let urlString: String
-        
-        if navigationController?.tabBarItem.tag == 0 {
-            urlString = Constants.whURLString1
-        } else {
-            urlString = Constants.whURLString2
-        }
-        
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
+        processURL()
+    }
+    
+    func processURL() {
+        DispatchQueue.main.async {
+            // URL to load
+            let urlString: String
+            
+            if self.navigationController?.tabBarItem.tag == 0 {
+                urlString = Constants.hwsURLString1
+            } else {
+                urlString = Constants.hwsURLString2
             }
+            
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {
+                    self.parse(json: data)
+                    return
+                }
+            }
+            self.showError()
         }
-        showError()
     }
     
     // MARK: - Table view methods
