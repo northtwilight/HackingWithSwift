@@ -139,6 +139,7 @@ class ViewController: UIViewController {
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         buttonsView.backgroundColor = .systemGreen
+        buttonsView.roundOffCorners()
         
         view.addSubview(buttonsView)
         
@@ -281,6 +282,7 @@ class ViewController: UIViewController {
             var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
             splitAnswers?[solutionPosition] =  answerText
             answersLabel.text = splitAnswers?.joined(separator: "\n")
+            print("answersLabel.text = \(answersLabel.text)")
             currentAnswer.text = ""
             score += 1
             
@@ -292,10 +294,27 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go", style: .default))
                 present(ac, animated: true)
             }
+        } else {
+            let ac = UIAlertController(
+                title: "Oh damn!",
+                message: "Wrong answer!",
+                preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Uh oh!!", style: .default))
+            ac.addAction(UIAlertAction(title: "Clear", style: .destructive) {[weak self]  _ in
+                print("About to clear via \(#file) & \(#function) calling clearTappedAction")
+                self?.clearTappedAction()
+            })
+            present(ac, animated: true)
+            score -= 1
+            
         }
     }
     
     @objc func clearTapped(_ sender: UIButton) {
+        clearTappedAction()
+    }
+    
+    private func clearTappedAction() {
         currentAnswer.text = ""
         for button in activatedButtons {
             button.isHidden = false
@@ -332,6 +351,7 @@ class ViewController: UIViewController {
         
         cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
         answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        print("answersLabel.text = \(answersLabel.text)")
         letterBits.shuffle()
         
         if letterBits.count == letterButtons.count {

@@ -17,6 +17,12 @@ class ViewModel: NSObject {
         label.numberOfLines = 0
         label.setContentHuggingPriority(config.contentHuggingPriority, for: config.axis)
         label.backgroundColor = config.backgroundColor
+        
+        label.roundOffCorners()
+//        label.layer.borderWidth = 3.0
+//        label.layer.borderColor = UIColor.systemPurple.cgColor
+//        label.layer.cornerRadius = 8
+//        label.layer.masksToBounds = true
     }
     
     func configure(textField: UITextField, config: TextFieldConfig) {
@@ -25,5 +31,7 @@ class ViewModel: NSObject {
         textField.textAlignment = config.textAlignment
         textField.font = config.font
         textField.isUserInteractionEnabled = config.isUserInteractionEnabled
+        textField.roundOffCorners()
+        
     }
 }
