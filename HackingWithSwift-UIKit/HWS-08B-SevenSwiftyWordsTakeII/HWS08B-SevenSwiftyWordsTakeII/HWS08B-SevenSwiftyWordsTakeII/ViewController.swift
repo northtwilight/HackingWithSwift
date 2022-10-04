@@ -6,32 +6,33 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
     private struct Constants {
-        static let scoreText = "Score: 0"
-        
-        static let clues = "CLUES"
-        static let answers = "ANSWERS"
         static let submit = "SUBMIT"
         static let clear = "CLEAR"
-        static let currentAnswerPlaceholder = "Tap letters to guess"
+        
         static let multiplier = 0.6
         static let pointFiveMultiplier = 0.5
         static let pointFourMultiplier = 0.4
         
-        static let twentyFour = CGFloat(24)
         static let fortyFour = CGFloat(44)
+        
         static let plusHundred = CGFloat(100)
         static let minusHundred = CGFloat(-100)
+        
         static let buttonsViewWidth = CGFloat(750)
         static let buttonsViewHeight = CGFloat(320)
         static let buttonsViewTop = CGFloat(20)
         static let buttonsViewBottom = CGFloat(-20)
+        
         static let submitCenterX = CGFloat(-100)
         static let submitHeight = CGFloat(44)
+        
         static let clearCenterX = CGFloat(100)
         static let clearHeight = submitHeight
+        
         static let buttonWidth = CGFloat(150)
         static let buttonHeight = CGFloat(80)
         static let buttonSize = CGFloat(36)
@@ -43,84 +44,33 @@ class ViewController: UIViewController {
             "Score: \(score)"
         }
     }
-    
     var viewModel = ViewModel()
-    
+    var scoreLabel: UILabel!
     var cluesLabel: UILabel!
     var answersLabel: UILabel!
-    var currentAnswer: UITextField!
-    var scoreLabel: UILabel!
-    var letterButtons = [UIButton]()
     
+    var currentAnswer: UITextField!
+    var cancellables = Set<AnyCancellable>()
     var activatedButtons = [UIButton]()
-    var solutions = [String]()
+    
     
     var score = 0 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            scoreLabel.text = Constants.configureScoreLabel(score: String(self.score))
         }
     }
     
-    var level = 1
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadLevel()
+        viewModel.loadLevel()
+        subscribeToVM()
     }
     
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = .white
-        
-        scoreLabel = UILabel()
-        let scoreConfig = LabelConfig(
-            textAlignment: .right,
-            font: UIFont.systemFont(ofSize: Constants.twentyFour),
-            label: scoreLabel,
-            text: Constants.scoreText,
-            contentHuggingPriority: UILayoutPriority(1),
-            axis: .vertical,
-            backgroundColor: .darkGray)
-                
-        viewModel.configure(label: scoreLabel, config: scoreConfig)
-        view.addSubview(scoreLabel)
-        
-        cluesLabel = UILabel()
-        let cluesConfig = LabelConfig(
-            textAlignment: .left,
-            font: UIFont.systemFont(ofSize: Constants.twentyFour),
-            label: cluesLabel,
-            text: Constants.clues,
-            contentHuggingPriority: UILayoutPriority(1),
-            axis: .vertical,
-            backgroundColor: .systemRed)
-        view.addSubview(cluesLabel)
-                
-        answersLabel = UILabel()
-        let answerConfig = LabelConfig(
-            textAlignment: .right,
-            font: UIFont.systemFont(ofSize: Constants.fortyFour),
-            label: answersLabel,
-            text: Constants.answers,
-            contentHuggingPriority: UILayoutPriority(1),
-            axis: .vertical,
-            backgroundColor: .systemBlue)
-        view.addSubview(answersLabel)
-                
-        currentAnswer = UITextField()
-        let currentAnswerConfig = TextFieldConfig(
-            textAlignment: .center,
-            font: UIFont.systemFont(ofSize: Constants.fortyFour),
-            placeholder: Constants.currentAnswerPlaceholder,
-            isUserInteractionEnabled: false)
-        
-        viewModel.configure(textField: currentAnswer, config: currentAnswerConfig)
-        view.addSubview(currentAnswer)
-        
+    func configureLabels() {
         let labelTuples: [(UILabel, LabelConfig)] = [
-            (scoreLabel, scoreConfig),
-            (cluesLabel, cluesConfig),
-            (answersLabel, answerConfig)]
+            (scoreLabel, viewModel.scoreConfig),
+            (cluesLabel, viewModel.cluesConfig),
+            (answersLabel, viewModel.answerConfig)]
         
         for tuple in labelTuples {
             let label = tuple.0
@@ -128,19 +78,46 @@ class ViewController: UIViewController {
             viewModel.configure(label: label, config: config)
             view.addSubview(label) }
         
-        let submit = UIButton(type: .system)
-        makeControl(button: submit, title: Constants.submit, action: #selector(submitTapped))
-        view.addSubview(submit)
         
-        let clear = UIButton(type: .system)
-        makeControl(button: clear, title: Constants.clear, action: #selector(clearTapped))
-        view.addSubview(clear)
-        
+    }
+    
+    func configureButtons(title: String, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        makeControl(button: button, title: title, action: action)
+        return button
+    }
+    
+    func configureButtonsView() -> UIView {
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         buttonsView.backgroundColor = .systemGreen
         buttonsView.roundOffCorners()
         
+        makeAnswerGridButtons(buttonsView: buttonsView)
+        return buttonsView
+    }
+    
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .white
+        
+        scoreLabel = UILabel()
+        cluesLabel = UILabel()
+        answersLabel = UILabel()
+        configureLabels()
+        
+        currentAnswer = UITextField()
+        viewModel.configure(textField: currentAnswer, config: viewModel.currentAnswerConfig)
+        
+        view.addSubview(currentAnswer)
+        
+        let submit = configureButtons(title: Constants.submit, action: #selector(submitTapped))
+        view.addSubview(submit)
+        
+        let clear = configureButtons(title: Constants.clear, action: #selector(clearTapped))
+        view.addSubview(clear)
+        
+        let buttonsView = configureButtonsView()
         view.addSubview(buttonsView)
         
         activateConstraints(
@@ -151,8 +128,16 @@ class ViewController: UIViewController {
             submit: submit,
             clear: clear,
             buttonsView: buttonsView)
+    }
+    
+    func subscribeToVM() {
+        viewModel.cluesPublisher.sink { [weak self] cluesText in
+           self?.cluesLabel.text = cluesText
+        }.store(in: &cancellables)
         
-        makeAnswerGridButtons(buttonsView: buttonsView)
+        viewModel.answersPublisher.sink { [weak self] answersText in
+           self?.answersLabel.text = answersText
+        }.store(in: &cancellables)
     }
     
     func makeControl(button: UIButton, title: String, action: Selector) {
@@ -258,7 +243,7 @@ class ViewController: UIViewController {
                 buttonsView.addSubview(letterButton)
                 
                 // and also to our letterButtons array
-                letterButtons.append(letterButton)
+                viewModel.letterButtons.append(letterButton)
                 letterButton.addTarget(
                     self,
                     action: #selector(letterTapped),
@@ -276,7 +261,7 @@ class ViewController: UIViewController {
     
     @objc func submitTapped(_ sender: UIButton) {
         guard let answerText = currentAnswer.text else { return }
-        if let solutionPosition = solutions.firstIndex(of: answerText) {
+        if let solutionPosition = viewModel.solutions.firstIndex(of: answerText) {
             activatedButtons.removeAll()
             
             var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
@@ -285,13 +270,17 @@ class ViewController: UIViewController {
             print("answersLabel.text = \(answersLabel.text)")
             currentAnswer.text = ""
             score += 1
-            
-            if score % 7 == 0 {
+
+            if answersLabel.text?.contains("letters") == false {
+                print("answersLabel.text doesn't contain 'letters', triggered ")
                 let ac = UIAlertController(
                     title: "Well done!",
                     message: "Are you ready for the next level?",
                     preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Let's go", style: .default))
+                ac.addAction(UIAlertAction(
+                    title: "Let's go",
+                    style: .default,
+                    handler: viewModel.levelUp(action:)))
                 present(ac, animated: true)
             }
         } else {
@@ -306,7 +295,6 @@ class ViewController: UIViewController {
             })
             present(ac, animated: true)
             score -= 1
-            
         }
     }
     
@@ -320,58 +308,6 @@ class ViewController: UIViewController {
             button.isHidden = false
         }
         activatedButtons.removeAll()
-    }
-    
-    func loadLevel() {
-        var clueString = ""
-        var solutionString = ""
-        var letterBits = [String]()
-        
-        if let levelFileURL = Bundle.main.url(forResource: levelNumber(level: level), withExtension: "txt") {
-            if let levelContents = try? String(contentsOf: levelFileURL) {
-                var lines = levelContents.components(separatedBy: "\n")
-                lines.shuffle()
-                
-                for (index, line) in lines.enumerated() {
-                    let parts = line.components(separatedBy: ": ")
-                    let answer = parts[0]
-                    let clue = parts[1]
-                    
-                    clueString += "\(index + 1). \(clue)\n"
-                    
-                    let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                    solutionString += "\(solutionWord.count) letters\n"
-                    solutions.append(solutionWord)
-                    
-                    let bits = answer.components(separatedBy: "|")
-                    letterBits += bits
-                }
-            }
-        }
-        
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-        print("answersLabel.text = \(answersLabel.text)")
-        letterBits.shuffle()
-        
-        if letterBits.count == letterButtons.count {
-            for iteration in 0 ..< letterButtons.count {
-                letterButtons[iteration].setTitle(letterBits[iteration], for: .normal)
-            }
-        }
-    }
-    
-    func levelNumber(level: Int) -> String {
-        "level\(level)"
-    }
-    
-    func levelUp(action: UIAlertAction) {
-        level += 1
-        solutions.removeAll(keepingCapacity: true)
-        loadLevel()
-        for button in letterButtons {
-            button.isHidden = false
-        }
     }
 }
 
