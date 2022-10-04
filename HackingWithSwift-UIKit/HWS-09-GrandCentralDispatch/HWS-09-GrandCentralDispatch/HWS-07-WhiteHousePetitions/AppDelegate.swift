@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateViewController(withIdentifier: Constants.navController)
             vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
             tabBarController.viewControllers?.append(vc)
+            
         }
+        self.window?.makeKeyAndVisible()
         return true
     }
 

@@ -33,32 +33,36 @@ class ViewController: UITableViewController {
     // MARK: - Lifecycle
     
     @objc func fetchJSON() {
-        let urlString: String
-        
-        if navigationController?.tabBarItem.tag == 0 {
-            urlString = Constants.whURLString1
-        } else {
-            urlString = Constants.whURLString2
-        }
-//        DispatchQueue.global(qos: .userInitiated).async {
-            if let url = URL(string: urlString) {
-                if let data = try? Data(contentsOf: url) {
-                    self.parse(json: data)
-                    return
+
+        DispatchQueue.main.async {
+            let urlString: String
+            if self.navigationController?.tabBarItem.tag == 0 {
+                // urlString = Constants.whURLString1
+                urlString = Constants.hwsURLString1
+            } else {
+                // urlString = Constants.whURLString2
+                urlString = Constants.hwsURLString2
+            }
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let url = URL(string: urlString) {
+                    if let data = try? Data(contentsOf: url) {
+                        self.parse(json: data)
+                        return
+                    }
                 }
             }
-            self.showError()
-//        }
-        performSelector(
-            onMainThread: #selector(showError),
+        }
+        
+        self.performSelector(
+            onMainThread: #selector(self.showError),
             with: nil,
             waitUntilDone: false)
+        
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         performSelector(inBackground: #selector(fetchJSON), with: nil)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -67,8 +71,18 @@ class ViewController: UITableViewController {
             target: self,
             action: #selector(showCredits))
         
-        let filter = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterPetitions))
-        let reset = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetFilter))
+        let filter = UIBarButtonItem(
+            title: "Filter",
+            style: .plain,
+            target: self,
+            action: #selector(filterPetitions))
+        
+        let reset = UIBarButtonItem(
+            title: "Reset",
+            style: .plain,
+            target: self,
+            action: #selector(resetFilter))
+        
         reset.tintColor = UIColor.red
         reset.isEnabled = false
         
@@ -83,16 +97,20 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
-        let petition: Petition
         
-        if filteredPetitions.isEmpty {
-            petition = petitions[indexPath.row]
-        } else {
-            petition = filteredPetitions[indexPath.row]
+        
+        DispatchQueue.main.async {
+            
+            let petition: Petition
+            if self.filteredPetitions.isEmpty {
+                petition = self.petitions[indexPath.row]
+            } else {
+                petition = self.filteredPetitions[indexPath.row]
+            }
+            cell.textLabel?.text = petition.title
+            cell.detailTextLabel?.text = petition.body
         }
         
-        cell.textLabel?.text = petition.title
-        cell.detailTextLabel?.text = petition.body
         return cell
     }
     
@@ -105,28 +123,34 @@ class ViewController: UITableViewController {
     // MARK: - Other methods
     
     func parse(json: Data) {
-        let decoder = JSONDecoder()
-        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            petitions = jsonPetitions.results
-            tableView.performSelector(
-                onMainThread: #selector(UITableView.reloadData),
-                with: nil,
-                waitUntilDone: false)
-        } else {
-            performSelector(
-                onMainThread: #selector(showError),
-                with: nil,
-                waitUntilDone: false)
+        DispatchQueue.main.async {
+            let decoder = JSONDecoder()
+            if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
+                self.petitions = jsonPetitions.results
+                self.tableView.performSelector(
+                    onMainThread: #selector(UITableView.reloadData),
+                    with: nil,
+                    waitUntilDone: false)
+            } else {
+                self.performSelector(
+                    onMainThread: #selector(self.showError),
+                    with: nil,
+                    waitUntilDone: false)
+            }
         }
+        
     }
     
     @objc func showError() {
-        let ac = UIAlertController(
-            title: Constants.loadingError,
-            message: Constants.message,
-            preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(ac, animated: true)
+        DispatchQueue.main.async {
+            let ac = UIAlertController(
+                title: Constants.loadingError,
+                message: Constants.message,
+                preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
+        
     }
     
     // MARK: - ObjC functions

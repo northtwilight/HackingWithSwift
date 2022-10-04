@@ -94,44 +94,45 @@ class ViewModel: NSObject {
     }
     
     func loadLevel() {
-        
-        var clueString = ""
-        var solutionString = ""
-        var letterBits = [String]()
-        
-        if let levelFileURL = Bundle.main.url(forResource: levelNumber(level: level), withExtension: "txt") {
-            if let levelContents = try? String(contentsOf: levelFileURL) {
-                var lines = levelContents.components(separatedBy: "\n")
-                lines.shuffle()
-                
-                for (index, line) in lines.enumerated() {
-                    let parts = line.components(separatedBy: ": ")
-                    let answer = parts[0]
-                    let clue = parts[1]
+        DispatchQueue.main.async {
+            var clueString = ""
+            var solutionString = ""
+            var letterBits = [String]()
+            
+            if let levelFileURL = Bundle.main.url(forResource: self.levelNumber(level: self.level), withExtension: "txt") {
+                if let levelContents = try? String(contentsOf: levelFileURL) {
+                    var lines = levelContents.components(separatedBy: "\n")
+                    lines.shuffle()
                     
-                    clueString += "\(index + 1). \(clue)\n"
-                    
-                    let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                    solutionString += "\(solutionWord.count) letters\n"
-                    solutions.append(solutionWord)
-                    
-                    let bits = answer.components(separatedBy: "|")
-                    letterBits += bits
+                    for (index, line) in lines.enumerated() {
+                        let parts = line.components(separatedBy: ": ")
+                        let answer = parts[0]
+                        let clue = parts[1]
+                        
+                        clueString += "\(index + 1). \(clue)\n"
+                        
+                        let solutionWord = answer.replacingOccurrences(of: "|", with: "")
+                        solutionString += "\(solutionWord.count) letters\n"
+                        self.solutions.append(solutionWord)
+                        
+                        let bits = answer.components(separatedBy: "|")
+                        letterBits += bits
+                    }
                 }
             }
-        }
-        cluesText = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersText = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        cluesSubject.send(cluesText)
-        answersSubject.send(answersText)
-        print("cluesText: \(cluesText)")
-        print("answersText: \(answersText)")
-        letterBits.shuffle()
-        
-        if letterBits.count == letterButtons.count {
-            for iteration in 0 ..< letterButtons.count {
-                letterButtons[iteration].setTitle(letterBits[iteration], for: .normal)
+            self.cluesText = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.answersText = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            self.cluesSubject.send(self.cluesText)
+            self.answersSubject.send(self.answersText)
+            print("cluesText: \(self.cluesText)")
+            print("answersText: \(self.answersText)")
+            letterBits.shuffle()
+            
+            if letterBits.count == self.letterButtons.count {
+                for iteration in 0 ..< self.letterButtons.count {
+                    self.letterButtons[iteration].setTitle(letterBits[iteration], for: .normal)
+                }
             }
         }
     }
