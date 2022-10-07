@@ -22,9 +22,7 @@ class ViewController:
     }
     
     var people = [Person]()
-    
 
-    
     lazy var isCameraEnabled: Bool = UIImagePickerController.isSourceTypeAvailable(.camera)
 
     override func viewDidLoad() {
@@ -43,7 +41,8 @@ class ViewController:
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return people.count
+         return people.count
+//        return 10
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,9 +79,9 @@ class ViewController:
         present(ac, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//    }
     
     @objc func addNewPerson(isCameraAvailable: Bool) {
         let picker = UIImagePickerController()
