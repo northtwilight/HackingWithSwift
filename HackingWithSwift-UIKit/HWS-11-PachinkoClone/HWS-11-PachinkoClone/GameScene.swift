@@ -9,8 +9,37 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     private struct Constants {
+        static let ballBlue = "ballBlue"
+        static let ballCyan = "ballCyan"
+        static let ballGreen = "ballGreen"
+        static let ballGrey = "ballGrey"
+        static let ballPurple = "ballPurple"
+        static let ballRed = "ballRed"
+        static let ballYellow = "ballYellow"
+        
         static let sixtyFour = CGFloat(64)
+        static let fontChalkduster = "Chalkduster"
+        static let scoreZero = "Score: 0"
+        static let edit = "Edit"
+
+        static let scoreX = 980
+        static let scoreY = 700
+        
+        static let editX = 80
+        static let editY = scoreY
+        
+        static let editLabelDone = "Done"
+        static let editLabelEdit = "Edit"
     }
+    
+    let ballColours = [
+        Constants.ballBlue,
+        Constants.ballCyan,
+        Constants.ballGreen,
+        Constants.ballGrey,
+        Constants.ballPurple,
+        Constants.ballRed,
+        Constants.ballYellow]
     
     var scoreLabel: SKLabelNode!
     var score = 0 {
@@ -22,12 +51,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var editingMode: Bool = false {
         didSet {
             if editingMode {
-                editLabel.text = "Done"
+                editLabel.text = Constants.editLabelDone
             } else {
-                editLabel.text = "Edit"
+                editLabel.text = Constants.editLabelEdit
             }
         }
     }
+    func makeLabelNode(
+        fontName: String,
+        text: String,
+        horizontalAlignmentMode:
+        SKLabelHorizontalAlignmentMode = .right,
+        position: CGPoint) -> SKLabelNode {
+            let label = SKLabelNode()
+            label.fontName = fontName
+            label.text = text
+            label.horizontalAlignmentMode = horizontalAlignmentMode
+            label.position = position
+            addChild(label)
+            
+            return label
+        }
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background.jpg")
@@ -49,17 +93,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBouncer(at: CGPoint(x: 768, y: 0))
         makeBouncer(at: CGPoint(x: 1024, y: 0))
         
-        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-        scoreLabel.text = "Score: 0"
-        scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: 980, y: 700)
-        addChild(scoreLabel)
+        scoreLabel = makeLabelNode(
+            fontName: Constants.fontChalkduster,
+            text: Constants.scoreZero,
+            position: CGPoint(
+                x: Constants.scoreX,
+                y: Constants.scoreY))
         
-        editLabel = SKLabelNode(fontNamed: "Chalkduster")
-        editLabel.text = "Edit"
-        editLabel.position = CGPoint(x: 80, y: 700)
-        addChild(editLabel)
-        
+        editLabel = makeLabelNode(
+            fontName: Constants.fontChalkduster,
+            text: Constants.edit,
+            position: CGPoint(
+                x: Constants.editX,
+                y: Constants.editY))
+                
 //        let bouncer = SKSpriteNode(imageNamed: "bouncer")
 //        bouncer.position = CGPoint(x: 512, y: 0)
 //        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
@@ -88,14 +135,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     box.physicsBody?.isDynamic = false
                     addChild(box)
                 } else {
-                    // create a ball
-                    let ball = SKSpriteNode(imageNamed: "ballRed")
-                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                    ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
-                    ball.physicsBody?.restitution = 0.4
-                    ball.position = location
-                    ball.name = "ball"
-                    addChild(ball)
+                    // challenge 2: Only top part of screen allows for ball creation
+                    if location.y >= 600 {
+                        // create a ball, random colour
+                        guard let randomBall = ballColours.randomElement() else { return }
+                        let ball = SKSpriteNode(imageNamed: randomBall)
+                        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                        ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+                        ball.physicsBody?.restitution = 0.4
+                        ball.position = location
+                        ball.name = "ball"
+                        addChild(ball)
+                    }
                 }
             }
             

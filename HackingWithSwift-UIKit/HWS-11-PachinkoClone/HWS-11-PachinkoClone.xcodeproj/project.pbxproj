@@ -55,21 +55,6 @@
 		77F5C01E2874006000081195 /* ballCyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballCyan@2x.png"; sourceTree = "<group>"; };
 		77F5C01F2874006000081195 /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
 		77F5C0202874006000081195 /* ballGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballGreen@2x.png"; sourceTree = "<group>"; };
-		77F5C0312874006400081195 /* slotGlowBad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotGlowBad@2x.png"; sourceTree = "<group>"; };
-		77F5C0322874006400081195 /* ballGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballGreen@2x.png"; sourceTree = "<group>"; };
-		77F5C0332874006500081195 /* ballRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballRed@2x.png"; sourceTree = "<group>"; };
-		77F5C0342874006500081195 /* ballYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballYellow@2x.png"; sourceTree = "<group>"; };
-		77F5C0352874006500081195 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		77F5C0362874006500081195 /* ballGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballGrey@2x.png"; sourceTree = "<group>"; };
-		77F5C0372874006500081195 /* bouncer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bouncer@2x.png"; sourceTree = "<group>"; };
-		77F5C0382874006500081195 /* slotBaseGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotBaseGood@2x.png"; sourceTree = "<group>"; };
-		77F5C0392874006500081195 /* slotGlowGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotGlowGood@2x.png"; sourceTree = "<group>"; };
-		77F5C03A2874006500081195 /* ballPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballPurple@2x.png"; sourceTree = "<group>"; };
-		77F5C03B2874006500081195 /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
-		77F5C03C2874006500081195 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
-		77F5C03D2874006500081195 /* ballCyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballCyan@2x.png"; sourceTree = "<group>"; };
-		77F5C03E2874006600081195 /* slotBaseBad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotBaseBad@2x.png"; sourceTree = "<group>"; };
-		77F5C03F2874006600081195 /* ballBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ballBlue@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +88,6 @@
 		7743E0072873FE8000FFF83B /* HWS-11-PachinkoClone */ = {
 			isa = PBXGroup;
 			children = (
-				77F5C0302874006400081195 /* Content */,
 				7743E0082873FE8000FFF83B /* AppDelegate.swift */,
 				7743E00A2873FE8000FFF83B /* GameScene.sks */,
 				7743E00E2873FE8000FFF83B /* GameScene.swift */,
@@ -136,28 +120,6 @@
 			);
 			name = Content;
 			path = "../sourceCode/HackingWithSwift/Classic/project11-files/Content";
-			sourceTree = "<group>";
-		};
-		77F5C0302874006400081195 /* Content */ = {
-			isa = PBXGroup;
-			children = (
-				77F5C03C2874006500081195 /* FireParticles.sks */,
-				77F5C03F2874006600081195 /* ballBlue@2x.png */,
-				77F5C0312874006400081195 /* slotGlowBad@2x.png */,
-				77F5C0342874006500081195 /* ballYellow@2x.png */,
-				77F5C0382874006500081195 /* slotBaseGood@2x.png */,
-				77F5C03A2874006500081195 /* ballPurple@2x.png */,
-				77F5C03E2874006600081195 /* slotBaseBad@2x.png */,
-				77F5C0362874006500081195 /* ballGrey@2x.png */,
-				77F5C0352874006500081195 /* spark.png */,
-				77F5C0372874006500081195 /* bouncer@2x.png */,
-				77F5C0392874006500081195 /* slotGlowGood@2x.png */,
-				77F5C0332874006500081195 /* ballRed@2x.png */,
-				77F5C03D2874006500081195 /* ballCyan@2x.png */,
-				77F5C03B2874006500081195 /* background@2x.jpg */,
-				77F5C0322874006400081195 /* ballGreen@2x.png */,
-			);
-			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
